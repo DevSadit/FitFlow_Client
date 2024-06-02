@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import pic1 from "../../../assets/abou1.jpg";
-import pic2 from "../../../assets/abou2.jpg";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,27 +12,32 @@ import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import CompoHeading from "../../Shared/CompoHeading";
+import { useQuery } from "@tanstack/react-query";
 
 const Testimonials = () => {
   const axiosPublic = useAxiosPublic();
   const [testimonials, setTestimonials] = useState([]);
 
+  // fetched the data using tenstack query
+  const { data: tstmonials = [] } = useQuery({
+    queryKey: ["tstmonials"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/testimonials`);
+      return res.data;
+    },
+  });
+
+  // set the fetched data in usestae
   useEffect(() => {
-    axiosPublic
-      .get(`/testimonials`)
-      .then((res) => {
-        setTestimonials(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    setTestimonials(tstmonials);
+  }, [tstmonials]);
+
   return (
     <div className="mt-12">
       <h1 className="text-6xl font-bold text-center">
         What Our <span className="text-[#ffbe0b]">Client</span> Says
       </h1>
+
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id}>
