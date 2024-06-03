@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import useAuthContext from "../hooks/useAuthContext";
 
 const Navbar = () => {
+  const {user, logOut} = useAuthContext();
+  // console.log(user);
   const navLinks = (
     <>
       <li>
@@ -28,11 +31,19 @@ const Navbar = () => {
           <div>Forums</div>
         </Link>
       </li>
-      <li>
-        <Link className="font-bold text-white text-lg" to="/login">
-          <div>Login</div>
-        </Link>
-      </li>
+      {user ? (
+        <li>
+          <Link className="font-bold text-white text-lg" to="/login">
+            <div onClick={logOut}>LogOut</div>
+          </Link>
+        </li>
+      ) : (
+        <li>
+          <Link className="font-bold text-white text-lg" to="/login">
+            <div>Login</div>
+          </Link>
+        </li>
+      )}
     </>
   );
   return (
