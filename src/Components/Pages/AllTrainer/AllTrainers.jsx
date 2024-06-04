@@ -2,14 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import CompoHeading from "../../Shared/CompoHeading";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
-import Trainer from "./Trainer";
-import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
+import Trainer from "../Home/Trainer";
 
-const OurTrainers = () => {
+const AllTrainers = () => {
   const axiosPublic = useAxiosPublic();
   const [trainers, setTrainers] = useState([]);
-  
   // fetched the trainers data using tenstack
   const { data: trainer = [] } = useQuery({
     queryKey: ["trainer"],
@@ -25,29 +22,20 @@ const OurTrainers = () => {
     setTrainers(trainer);
   }, [trainer]);
 
+//   console.log(trainers);
   return (
-    <div>
+    <div className="mt-12">
       <CompoHeading
-        normHeading={`Our`}
-        colorHeading={`Trainers`}
+        normHeading={`Look At Our All`}
+        colorHeading={`Trainer's`}
       ></CompoHeading>
-
-      <div className="grid lg:grid-cols-3 lg:gap-28">
-        {trainers.slice(0, 3).map((trainer) => (
+      <div className="grid lg:grid-cols-3 lg:gap-28 mt-10">
+        {trainers.map((trainer) => (
           <Trainer key={trainer._id} trainer={trainer}></Trainer>
         ))}
-      </div>
-      <div className="right-44 absolute hover:underline mt-5">
-        <Link
-          to="/allTrainers"
-          className="font-semibold text-blue-500 italic  flex items-center gap-x-3"
-        >
-          View All Trainers
-          <FaArrowRight />
-        </Link>
       </div>
     </div>
   );
 };
 
-export default OurTrainers;
+export default AllTrainers;
