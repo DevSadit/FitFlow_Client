@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
 
 const Navbar = () => {
-  const {user, logOut} = useAuthContext();
+  const { user, logOut } = useAuthContext();
   // console.log(user);
   const navLinks = (
     <>
@@ -32,11 +32,7 @@ const Navbar = () => {
         </Link>
       </li>
       {user ? (
-        <li>
-          <Link className="font-bold text-white text-lg" to="/login">
-            <div onClick={logOut}>LogOut</div>
-          </Link>
-        </li>
+        ""
       ) : (
         <li>
           <Link className="font-bold text-white text-lg" to="/login">
@@ -73,24 +69,39 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn text-white btn-ghost text-2xl font-bold">
-         Fit Flow
-        </a>
+        <a className="btn text-white btn-ghost text-2xl font-bold">Fit Flow</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end">
-        <Link className="">
-          <div className="w-10 ">
-            <img
-              className="rounded-full"
-              alt="Tailwind CSS Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            />
+      {user ? (
+        <div className=" navbar-end">
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">Dashboard</a>
+              </li>
+              <li>
+                <a onClick={logOut}>Logout</a>
+              </li>
+            </ul>
           </div>
-        </Link>
-      </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
