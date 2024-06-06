@@ -32,12 +32,12 @@ const OurTrainers = () => {
         colorHeading={`Trainers`}
       ></CompoHeading>
 
-      <div className="grid lg:grid-cols-3 lg:gap-28">
+      <div className="grid mt-10 lg:grid-cols-3 lg:gap-28">
         {trainers.slice(0, 3).map((trainer) => (
           <Trainer key={trainer._id} trainer={trainer}></Trainer>
         ))}
       </div>
-      <div className="right-44 absolute hover:underline mt-5">
+      <div className="right-44 mt-5 absolute hover:underline">
         <Link
           to="/allTrainers"
           className="font-semibold text-blue-500 italic  flex items-center gap-x-3"

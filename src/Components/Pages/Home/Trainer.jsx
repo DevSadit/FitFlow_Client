@@ -6,9 +6,13 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 import { LiaDumbbellSolid } from "react-icons/lia";
+import { Link } from "react-router-dom";
 
 const Trainer = ({ trainer }) => {
   const { _id, name, bio, expertise, photo, experience, slots } = trainer;
+  const shortBio = bio.split(".").splice(0, 2).join(".");
+
+  // console.log(shortBio);
   // console.log(slots);
   return (
     <div className="w-full overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -37,15 +41,17 @@ const Trainer = ({ trainer }) => {
           {name}
         </h1>
 
-        <p className="py-2 text-gray-700 h-96 dark:text-gray-400">{bio}</p>
-        <hr className="mb-3" />
-        <h3 className="text-lg mb-2 font-semibold">Slots:</h3>
-        {
+        <p className="py-2 text-gray-700 h-28 dark:text-gray-400">{shortBio}</p>
+        {/* <hr className="mb-3" /> */}
+        {/* <h3 className="text-lg mb-2 font-semibold">Slots:</h3> */}
+        {/* {
           // eslint-disable-next-line react/prop-types
           slots.map((slot, i) => (
-            <p className="italic font-medium" key={i}>{slot}</p>
+            <p className="italic font-medium" key={i}>
+              {slot}
+            </p>
           ))
-        }
+        } */}
 
         <hr className="my-5" />
         <div className="flex mb-4 justify-between items-center gap-x-3">
@@ -54,9 +60,11 @@ const Trainer = ({ trainer }) => {
           <FaInstagram className="w-7 h-7 cursor-pointer hover:text-green-600" />
           <FaTwitterSquare className="w-7 h-7 cursor-pointer hover:text-green-600" />
         </div>
-        <button className="py-3 px-5 w-full rounded-lg bg-gray-900 text-white font-bold hover:bg-gray-700">
-          Book Now
-        </button>
+        <Link to={`/trainerDetails/${_id}`}>
+          <button className="py-3 px-5 w-full rounded-lg bg-gray-900 text-white font-bold hover:bg-gray-700">
+            View Details
+          </button>
+        </Link>
       </div>
     </div>
   );

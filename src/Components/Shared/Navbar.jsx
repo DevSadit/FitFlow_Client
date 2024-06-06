@@ -32,7 +32,7 @@ const Navbar = () => {
         </Link>
       </li>
       {user ? (
-        ""
+        ''
       ) : (
         <li>
           <Link className="font-bold text-white text-lg" to="/login">
@@ -69,7 +69,9 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="btn text-white btn-ghost text-2xl font-bold">Fit Flow</Link>
+        <Link to="/" className="btn text-white btn-ghost text-2xl font-bold">
+          Fit Flow
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
@@ -83,7 +85,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                <img alt="" src={user.photoURL} />
               </div>
             </div>
             <ul
