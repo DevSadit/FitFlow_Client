@@ -1,6 +1,5 @@
-import { RiH5 } from "react-icons/ri";
-import { useLoaderData } from "react-router-dom";
-
+import { Link, useLoaderData } from "react-router-dom";
+import image from "../../assets/beatrainer.jpg"
 const TrainerDetails = () => {
   const trainerDatas = useLoaderData();
   const { _id, name, bio, expertise, photo, experience, slots, certification } =
@@ -73,6 +72,32 @@ const TrainerDetails = () => {
               A kettlebell total body workout! It’ll leave you on the floor for
               at least 15 minutes afterward in glorious exhaustion.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Be a Trainer */}
+      <div
+        className="hero min-h-[calc(100vh-216px)]"
+        style={{
+          backgroundImage: `url(${image})`,
+        }}
+      >
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Be A Trainer</h1>
+            <p className="mb-5">
+              Become a fitness trainer with us and help clients achieve their
+              wellness goals. Enjoy access to top-notch facilities, ongoing
+              professional growth, and a supportive community. Transform lives
+              with personalized training programs.
+            </p>
+            <Link to="/be-a-trainer">
+              <button className="bg-gray-900 text-white px-7 py-4 hover:bg-gray-800">
+                Be A Trainer
+              </button>
+            </Link>
           </div>
         </div>
       </div>

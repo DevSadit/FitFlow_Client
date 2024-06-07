@@ -26,13 +26,8 @@ const Navbar = () => {
           <div>Forums</div>
         </Link>
       </li>
-      <li>
-        <Link className="font-bold text-white text-lg" to="/forums">
-          <div>Forums</div>
-        </Link>
-      </li>
       {user ? (
-        ''
+        ""
       ) : (
         <li>
           <Link className="font-bold text-white text-lg" to="/login">
@@ -76,9 +71,9 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      {user ? (
         <div className=" navbar-end">
-          <div className="dropdown dropdown-end">
+          {
+            user ? <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
@@ -99,11 +94,9 @@ const Navbar = () => {
                 <a onClick={logOut}>Logout</a>
               </li>
             </ul>
-          </div>
+          </div> : ""
+          }
         </div>
-      ) : (
-        ""
-      )}
     </div>
   );
 };
