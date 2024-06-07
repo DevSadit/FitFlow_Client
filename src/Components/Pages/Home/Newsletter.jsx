@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 const NewsLetter = () => {
+  const axiosPublic = useAxiosPublic();
   const formRef = React.createRef();
+
+
+
+  // console.log(newsletterUsers);
   const handleSubscribe = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    if (email) {
-      if (email.length > 0) {
+    const newEmail = { email };
+    if ((email, email.length > 0)) {
+      axiosPublic.post("newsletter", newEmail).then((res) => {
+        console.log(res);
         toast.success("Thank you for subscribing to our newsletter!");
-      }
+      });
     }
 
     // clear form

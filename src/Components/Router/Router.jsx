@@ -6,24 +6,21 @@ import Register from "../Pages/Register/Register";
 import AllTrainers from "../Pages/AllTrainer/AllTrainers";
 import TrainerDetails from "../Shared/TrainerDetails";
 import BeATrainer from "../Pages/BeATrainer/BeATrainer";
+import DashboardLayout from "../Pages/Dashboard/DashboardLayout";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import NewsletterSubsc from "../Pages/Admin Pages/NewsletterSubscribers/NewsletterSubsc";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
       },
-      {
-        path: "/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
+
       {
         path: "/allTrainers",
         element: <AllTrainers></AllTrainers>,
@@ -37,6 +34,26 @@ const router = createBrowserRouter([
         element: <TrainerDetails></TrainerDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/trainer/${params.id}`),
+      },
+    ],
+  },
+
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "newsletter-subsc",
+        element: <NewsletterSubsc></NewsletterSubsc>,
       },
     ],
   },

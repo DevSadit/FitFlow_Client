@@ -1,31 +1,14 @@
 import { FaLink } from "react-icons/fa";
 import { MdDriveFileRenameOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const Register = () => {
-    const { createUser, updateUserProfile, user, setUser, signInWithGoogle } =
-      useAuthContext();
-//   const handleSignUp = (e) => {
-//     e.preventDefault();
-//     // console.log(`working`);
-//     const form = e.target;
-//     const name = form.name.value;
-//     const email = form.email.value;
-//     const photoUrl = form.photoUrl.value;
-//     const password = form.password.value;
-//     console.log(name, email, photoUrl, password);
-//     createUser(email, password)
-//     .then(res=> {
-//         console.log(res);
-//     })
-//     .catch(error){
-//         console.log(error);
-//     }
-//   };
-
+  const navigate = useNavigate();
+  const { createUser, updateUserProfile, user, setUser, signInWithGoogle } =
+    useAuthContext();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -47,7 +30,7 @@ const Register = () => {
       // Proceed if password is valid
       // eslint-disable-next-line no-unused-vars
       const result = await createUser(email, password);
-    //   console.log(result);
+      //   console.log(result);
       await updateUserProfile(name, photo);
       setUser({ ...user, photoURL: photo, displayName: name });
       //   navigate("/");
@@ -63,7 +46,18 @@ const Register = () => {
     }
   };
 
-
+  const handleGoogleLogin = () => {
+    signInWithGoogle().then((res) => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your Signed in Succesfuly!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    });
+  };
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -153,7 +147,7 @@ const Register = () => {
 
             <a
               href="#"
-              onClick={signInWithGoogle}
+              onClick={handleGoogleLogin}
               className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">

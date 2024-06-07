@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { signIn, signInWithGoogle } = useAuthContext();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const Login = () => {
       // user login
       const result = await signIn(email, password);
       // console.log(result);
-      //   navigate("/");
+      navigate("/");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -27,6 +28,18 @@ const Login = () => {
       console.log(err);
       toast.error(err?.message);
     }
+  };
+  const handleGoogleLogin = () => {
+    signInWithGoogle().then((res) => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your LoggedIn Succesfuly!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    });
   };
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -89,7 +102,7 @@ const Login = () => {
 
             <a
               href="#"
-              onClick={signInWithGoogle}
+              onClick={handleGoogleLogin}
               className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">

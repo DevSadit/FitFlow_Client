@@ -71,9 +71,9 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-        <div className=" navbar-end">
-          {
-            user ? <div className="dropdown dropdown-end">
+      <div className=" navbar-end">
+        {user ? (
+          <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
@@ -87,16 +87,20 @@ const Navbar = () => {
               tabIndex={0}
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a className="justify-between">Dashboard</a>
-              </li>
+              <Link to="dashboard">
+                <li>
+                  <a className="justify-between">Dashboard</a>
+                </li>
+              </Link>
               <li>
                 <a onClick={logOut}>Logout</a>
               </li>
             </ul>
-          </div> : ""
-          }
-        </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

@@ -4,12 +4,14 @@ import DaySlots from "./DaySlots";
 import TimePicker from "./TimePicker";
 import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const BeATrainer = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const [selectedOption, setSelectedOption] = useState(null);
   const [value, setValue] = useState([]);
   const [selectedCert, setSelectedCert] = useState(null);
-  const [pic, setPic] = useState(null);
 
   const handleBeaTrainer = async (e) => {
     e.preventDefault();
@@ -22,11 +24,13 @@ const BeATrainer = () => {
     const experience = form.experience.value;
     const certification = selectedCert;
     const bio = form.description.value;
-    const role = "Trainer";
+    const role = "Pending";
     const photo = form.image.files[0];
     const formData = new FormData();
 
     formData.append("image", photo);
+
+    let pic = ""; // Declare pic variable here
 
     try {
       const { data } = await axios.post(
@@ -35,11 +39,12 @@ const BeATrainer = () => {
         }`,
         formData
       );
-      // console.log(data.data.display_url);
-      setPic(data.data.display_url);
+      console.log(data.data.display_url);
+      pic = data.data.display_url; // Assign pic here
     } catch (error) {
       console.log(error);
     }
+
     const userInfo = {
       name,
       availableDay,
@@ -49,15 +54,25 @@ const BeATrainer = () => {
       experience,
       bio,
       certification,
-      pic,
+      pic, 
       role,
     };
     // console.log(userInfo);
 
     // post the data to db
     const response = await axiosPublic.post("/trainers", userInfo);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "You Applied Sucessfully!",
+      text: "Wait For Admin Acceptance",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/");
     console.log(response);
   };
+
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <h1 className="text-5xl font-bold mb-9">Be A Trainer !</h1>

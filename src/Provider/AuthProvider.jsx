@@ -64,8 +64,7 @@ const AuthProvider = ({ children }) => {
           email: currentUser.email,
           role: `member`,
         };
-        axiosPublic.post(`/users`, userInfo)
-        .then((res) => {
+        axiosPublic.post(`/users`, userInfo).then((res) => {
           // console.log(res);
         });
       }
