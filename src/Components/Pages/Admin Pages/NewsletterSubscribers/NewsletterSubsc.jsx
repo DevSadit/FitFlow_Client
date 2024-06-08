@@ -7,7 +7,7 @@ const NewsletterSubsc = () => {
   return (
     <div className="overflow-x-auto">
       <h1 className="text-4xl font-medium">
-        Total Newsletter Subscribed {"User's"} {newsletterUsers.length}
+        Total Newsletter {"Subscriber's"} {newsletterUsers.length}
       </h1>
       <div className="overflow-x-auto mt-10">
         <table className="table">

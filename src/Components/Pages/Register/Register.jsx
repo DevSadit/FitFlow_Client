@@ -17,7 +17,7 @@ const Register = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    console.log({ email, name, photo, password });
+    // console.log({ email, name, photo, password });
 
     try {
       if (
@@ -44,6 +44,7 @@ const Register = () => {
     } catch (err) {
       console.log(err);
     }
+navigate("/");
   };
 
   const handleGoogleLogin = () => {

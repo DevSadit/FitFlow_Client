@@ -9,6 +9,7 @@ import BeATrainer from "../Pages/BeATrainer/BeATrainer";
 import DashboardLayout from "../Pages/Dashboard/DashboardLayout";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import NewsletterSubsc from "../Pages/Admin Pages/NewsletterSubscribers/NewsletterSubsc";
+import AdminTrainers from "../Pages/Admin Pages/AdminTrainers/AdminTrainers";
 
 const router = createBrowserRouter([
   {
@@ -51,9 +52,18 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     children: [
+      // admin routes
+      {
+        index: true,
+        element: <NewsletterSubsc></NewsletterSubsc>,
+      },
       {
         path: "newsletter-subsc",
         element: <NewsletterSubsc></NewsletterSubsc>,
+      },
+      {
+        path: "all-trainers",
+        element: <AdminTrainers></AdminTrainers>
       },
     ],
   },

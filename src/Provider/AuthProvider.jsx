@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import app from "../Firebase/Firebase";
 import useAxiosPublic from "../Components/hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -21,6 +22,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
+
   //   creat user with email and password
   const createUser = (email, password) => {
     setLoading(true);
@@ -52,22 +54,26 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    if (user && user?.displayName) {
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        role: `member`,
+        status: `Accepted`,
+      };
+      // console.log(userInfo);
+      axiosPublic.post(`/users`, userInfo).then((res) => {
+        // console.log(res);
+      });
+    }
+  }, [axiosPublic, user]);
   // onAuthStateChange--> Observe the user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("CurrentUser-->", currentUser);
       setLoading(false);
-      if (currentUser) {
-        const userInfo = {
-          name: currentUser.displayName,
-          email: currentUser.email,
-          role: `member`,
-        };
-        axiosPublic.post(`/users`, userInfo).then((res) => {
-          // console.log(res);
-        });
-      }
     });
     return () => {
       return unsubscribe();
