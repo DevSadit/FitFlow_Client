@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import image from "../../assets/beatrainer.jpg"
 const TrainerDetails = () => {
   const trainerDatas = useLoaderData();
-  const { _id, name, bio, expertise, photo, experience, slots, certification } =
+  const { _id, name, bio, expertise, pic, experience, slots, certification } =
     trainerDatas;
   return (
     <div>
@@ -36,7 +36,7 @@ const TrainerDetails = () => {
         </div>
         {/* image */}
         <div className="">
-          <img src={photo} className="w-full rounded-full h-96 " />
+          <img src={pic} className="w-full rounded-full h-96 " />
         </div>
       </div>
 

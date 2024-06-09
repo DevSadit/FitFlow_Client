@@ -33,9 +33,11 @@ const OurTrainers = () => {
       ></CompoHeading>
 
       <div className="grid mt-10 lg:grid-cols-3 lg:gap-28">
-        {trainers.slice(0, 3).map((trainer) => (
+        {
+        trainers.slice(0, 3).map((trainer) => (
           <Trainer key={trainer._id} trainer={trainer}></Trainer>
-        ))}
+        ))
+        }
       </div>
       <div className="right-44 mt-5 absolute hover:underline">
         <Link

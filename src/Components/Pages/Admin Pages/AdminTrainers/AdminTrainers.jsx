@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import TrainerRow from "./TrainerRow";
 
 const AdminTrainers = () => {
+  const status = `Accepted`
   const axiosPublic = useAxiosPublic();
 //   const axiosSecure = useAxiosSecure();
   const [trainers, setTrainers] = useState([]);
@@ -12,7 +13,7 @@ const AdminTrainers = () => {
   const { data: trainer = [], refetch } = useQuery({
     queryKey: ["trainer"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/trainers`);
+      const res = await axiosPublic.get(`/trainers/${status}`);
       // console.log(res.data);
       return res.data;
     },
@@ -24,7 +25,7 @@ const AdminTrainers = () => {
   }, [trainer]);
   return (
     <div>
-      <h1 className="text-5xl">
+      <h1 className="text-4xl font-medium">
         Total {"Trainer's"} {trainers.length}
       </h1>
 

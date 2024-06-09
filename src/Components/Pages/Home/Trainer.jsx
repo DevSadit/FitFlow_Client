@@ -9,7 +9,7 @@ import { LiaDumbbellSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 
 const Trainer = ({ trainer }) => {
-  const { _id, name, bio, expertise, photo, experience, slots } = trainer;
+  const { _id, name, bio, expertise, pic, experience, slots } = trainer;
   const shortBio = bio.split(".").splice(0, 2).join(".");
 
   // console.log(shortBio);
@@ -18,7 +18,7 @@ const Trainer = ({ trainer }) => {
     <div className="w-full overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
       <img
         className="object-cover object-center w-full h-72"
-        src={photo}
+        src={pic}
         alt="avatar"
       />
 

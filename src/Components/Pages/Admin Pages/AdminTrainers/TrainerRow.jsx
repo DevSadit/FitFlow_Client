@@ -22,7 +22,7 @@ const TrainerRow = ({ i, trainer, refetch }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axiosSecure.delete(`/trainers/${id}`);
+          const response = await axiosSecure.delete(`/trainer/${id}`);
           console.log(response);
           Swal.fire({
             title: "Deleted!",
@@ -33,15 +33,6 @@ const TrainerRow = ({ i, trainer, refetch }) => {
         } catch (error) {
           console.error("Error deleting trainer:", error);
 
-          // const response = axiosSecure.delete(`/trainers/${id}`);
-          // console.log(response);
-
-          // Swal.fire({
-          //   title: "Deleted!",
-          //   text: "Trainer has been deleted Sucessfully.",
-          //   icon: "success",
-          // });
-          // refetch();
         }
       }
     });
@@ -70,7 +61,7 @@ const TrainerRow = ({ i, trainer, refetch }) => {
           onClick={() => handleDelete(_id)}
           className="btn bg-red-500 btn-md"
         >
-          <FaRegTrashAlt />
+          <FaRegTrashAlt className="text-white" />
         </button>
       </th>
     </tr>

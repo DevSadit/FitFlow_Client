@@ -10,6 +10,7 @@ import DashboardLayout from "../Pages/Dashboard/DashboardLayout";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import NewsletterSubsc from "../Pages/Admin Pages/NewsletterSubscribers/NewsletterSubsc";
 import AdminTrainers from "../Pages/Admin Pages/AdminTrainers/AdminTrainers";
+import AdmApliedTrainers from "../Pages/AdmApliedTrainers/AdmApliedTrainers";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: "all-trainers",
-        element: <AdminTrainers></AdminTrainers>
+        element: <AdminTrainers></AdminTrainers>,
+      },
+      {
+        path: "applied-trainers",
+        element: <AdmApliedTrainers></AdmApliedTrainers>,
       },
     ],
   },

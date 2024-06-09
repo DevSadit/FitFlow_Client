@@ -6,7 +6,9 @@ import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAuthContext from "../../hooks/useAuthContext";
 const BeATrainer = () => {
+  const { user } = useAuthContext();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -17,14 +19,15 @@ const BeATrainer = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.fullName.value;
-    const availableDay = selectedOption[0];
+    const availableDay = selectedOption;
     const availableTime = value;
     const category = form.category.value;
     const email = form.email.value;
     const experience = form.experience.value;
     const certification = selectedCert;
     const bio = form.description.value;
-    const role = "Pending";
+    const status = "Pending";
+    const role = "Member";
     const photo = form.image.files[0];
     const formData = new FormData();
 
@@ -54,7 +57,8 @@ const BeATrainer = () => {
       experience,
       bio,
       certification,
-      pic, 
+      pic,
+      status,
       role,
     };
     // console.log(userInfo);
@@ -86,6 +90,7 @@ const BeATrainer = () => {
               </label>
               <input
                 className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
+                defaultValue={user.displayName}
                 name="fullName"
                 id="fullName"
                 type="text"
@@ -134,6 +139,7 @@ const BeATrainer = () => {
               </label>
               <input
                 className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
+                defaultValue={user.email}
                 name="email"
                 id="email"
                 type="text"
