@@ -47,7 +47,6 @@ const ApliedTrainerRow = ({ user, appTrainer, refetch }) => {
     }
   };
 
-
   const { status, email, role } = appTrainer;
   return (
     <tr>
@@ -56,7 +55,7 @@ const ApliedTrainerRow = ({ user, appTrainer, refetch }) => {
         <p className="text-gray-900 whitespace-no-wrap">{email}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{role}</p>
+        <p className=" whitespace-no-wrap ">{role}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         {user?.status ? (
@@ -68,7 +67,9 @@ const ApliedTrainerRow = ({ user, appTrainer, refetch }) => {
             {user.status}
           </p>
         ) : (
-          <p className="text-black whitespace-no-wrap">{status}</p>
+          <p className=" whitespace-no-wrap text-yellow-500">
+            {status}
+          </p>
         )}
       </td>
       <td className="px-5 py-5 border-b border-gray-200  text-sm">

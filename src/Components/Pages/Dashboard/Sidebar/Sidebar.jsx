@@ -17,7 +17,7 @@ const Sidebar = () => {
       <h1 className="text-5xl text-center font-bold mt-7">Fit Flow</h1>
       {role === "Admin" && <AdminMenuList></AdminMenuList>}
       {role === "member" && <MemberMenuList></MemberMenuList>}
-      {role === "trainer" && <TrainerMenuList></TrainerMenuList>}
+      {role === "Trainer" && <TrainerMenuList></TrainerMenuList>}
       <div className="divider "></div>
       <ul className="menu ">
         <li>
