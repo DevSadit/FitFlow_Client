@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UpdateUserModal from "./UpdateUserModal";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

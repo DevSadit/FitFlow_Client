@@ -7,11 +7,11 @@ import "react-clock/dist/Clock.css";
 
 function TimePicker({ value, setValue }) {
   return (
-    <div className="p-4">
+    <div >
       <TimeRangePicker
         onChange={setValue}
         value={value}
-        className="border rounded px-2 py-1"
+        className="mt-1 rounded"
       />
     </div>
   );

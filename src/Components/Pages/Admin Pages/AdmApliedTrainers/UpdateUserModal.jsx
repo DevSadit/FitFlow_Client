@@ -132,5 +132,4 @@ const UpdateUserModal = ({ setIsOpen, isOpen, modalHandler, appTrainer }) => {
   );
 };
 
-
 export default UpdateUserModal;

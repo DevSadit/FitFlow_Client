@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuthContext from "../../hooks/useAuthContext";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 import { useEffect, useState } from "react";
-import ApliedTrainerRow from "./ApliedTrainerRow";
-import noDataFound from "../../../assets/data_not_found.svg";
+import ApliedTrainerRow from "./ApliedTrainerRow"
+import noDataFound from "../../../../assets/data_not_found.svg";
+import useAuthContext from "../../../hooks/useAuthContext";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const AdmApliedTrainers = () => {
   const { user } = useAuthContext();
   const [appliedTrainers, setAppliedTrainers] = useState([]);
@@ -79,7 +80,9 @@ const AdmApliedTrainers = () => {
       ) : (
         <div className="flex flex-col justify-center items-center">
           <img className="" src={noDataFound} />
-          <h1 className="italic text-3xl font-semibold mt-10">No Trainer Application Request Found!</h1>
+          <h1 className="italic text-3xl font-semibold mt-10">
+            No Trainer Application Request Found!
+          </h1>
         </div>
       )}
     </>

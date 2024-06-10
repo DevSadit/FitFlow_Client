@@ -30,7 +30,7 @@ const AdminMenuList = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="uppercase" to="/dashboard/add-clases">
+          <NavLink className="uppercase" to="/dashboard/add-classes">
             <FaRegUser />
             Add new Class
           </NavLink>

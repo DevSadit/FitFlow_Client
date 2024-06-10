@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Certificateslot from "./Certificateslot";
 import DaySlots from "./DaySlots";
+import CategorySlot from "./CategorySlot";
 import TimePicker from "./TimePicker";
 import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -11,6 +12,7 @@ const BeATrainer = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [value, setValue] = useState([]);
   const [selectedCert, setSelectedCert] = useState(null);
@@ -21,7 +23,7 @@ const BeATrainer = () => {
     const name = form.fullName.value;
     const availableDay = selectedOption;
     const availableTime = value;
-    const category = form.category.value;
+    const expert = form.category.value;
     const email = form.email.value;
     const experience = form.experience.value;
     const certification = selectedCert;
@@ -30,10 +32,10 @@ const BeATrainer = () => {
     const role = "Member";
     const photo = form.image.files[0];
     const formData = new FormData();
-
+const ctgory = selectedCategory[0].value;
     formData.append("image", photo);
-
-    let pic = ""; // Declare pic variable here
+// console.log(ctgory);
+    let pic = ""; 
 
     try {
       const { data } = await axios.post(
@@ -52,16 +54,17 @@ const BeATrainer = () => {
       name,
       availableDay,
       availableTime,
-      expertise: category,
+      expertise: expert,
       email,
       experience,
+      category: ctgory,
       bio,
       certification,
       pic,
       status,
       role,
     };
-    // console.log(userInfo);
+    console.log(userInfo);
 
     // post the data to db
     const response = await axiosPublic.post("/trainers", userInfo);
@@ -81,7 +84,7 @@ const BeATrainer = () => {
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <h1 className="text-5xl font-bold mb-9">Be A Trainer !</h1>
       <form onSubmit={handleBeaTrainer}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="flex justify-between gap-x-10 items-center">
           <div className="space-y-6">
             {/* be a trainer */}
             <div className="space-y-1 text-sm">
@@ -90,7 +93,7 @@ const BeATrainer = () => {
               </label>
               <input
                 className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
-                defaultValue={user.displayName}
+                defaultValue={user?.displayName}
                 name="fullName"
                 id="fullName"
                 type="text"
@@ -131,15 +134,23 @@ const BeATrainer = () => {
                 <TimePicker value={value} setValue={setValue}></TimePicker>
               </div>
             </div>
+            {/*  */}
+            <div className="">
+              <label htmlFor="location" className="block text-gray-600">
+                Select Your Category
+              </label>
+              <CategorySlot selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></CategorySlot>
+            </div>
+            {/*  */}
           </div>
-          <div className="space-y-6">
+          <div className="space-y-7">
             <div className="space-y-1 text-sm">
               <label htmlFor="title" className="block text-gray-600">
                 Email
               </label>
               <input
                 className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
-                defaultValue={user.email}
+                defaultValue={user?.email}
                 name="email"
                 id="email"
                 type="text"
@@ -185,7 +196,7 @@ const BeATrainer = () => {
               </div>
             </div>
 
-            <div className="w-full space-y-2">
+            <div className="w-full max-w-[300px] space-y-2">
               <span>Certification</span>
               <Certificateslot
                 selectedCert={selectedCert}
