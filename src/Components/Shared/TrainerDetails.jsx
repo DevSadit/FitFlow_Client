@@ -2,8 +2,19 @@ import { Link, useLoaderData } from "react-router-dom";
 import image from "../../assets/beatrainer.jpg"
 const TrainerDetails = () => {
   const trainerDatas = useLoaderData();
-  const { _id, name, bio, expertise, pic, experience, slots, certification } =
-    trainerDatas;
+  const {
+    _id,
+    name,
+    availableDay,
+    availableTime,
+    expertise,
+    email,
+    experience,
+    category,
+    bio,
+    certification,
+    pic,
+  } = trainerDatas;
   return (
     <div>
       {/* header */}
@@ -21,7 +32,7 @@ const TrainerDetails = () => {
             <h5 key={_id}>
               <ol className="list-disc ml-9">
                 <li className="mb-4">
-                  <p className="text-lg">{crtificate}</p>
+                  <p className="text-lg">{crtificate.value}</p>
                 </li>
               </ol>
             </h5>

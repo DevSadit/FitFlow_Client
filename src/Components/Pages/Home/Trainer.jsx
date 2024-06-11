@@ -9,7 +9,19 @@ import { LiaDumbbellSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 
 const Trainer = ({ trainer }) => {
-  const { _id, name, bio, expertise, pic, experience, slots } = trainer;
+  const {
+    _id,
+    name,
+    availableDay,
+    availableTime,
+    expertise,
+    email,
+    experience,
+    category,
+    bio,
+    certification,
+    pic,
+  } = trainer;
   const shortBio = bio.split(".").splice(0, 2).join(".");
 
   // console.log(shortBio);

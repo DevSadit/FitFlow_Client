@@ -32,10 +32,9 @@ const BeATrainer = () => {
     const role = "Member";
     const photo = form.image.files[0];
     const formData = new FormData();
-const ctgory = selectedCategory[0].value;
+    const ctgory = selectedCategory[0].value;
     formData.append("image", photo);
-// console.log(ctgory);
-    let pic = ""; 
+    let pic = "";
 
     try {
       const { data } = await axios.post(
@@ -139,7 +138,10 @@ const ctgory = selectedCategory[0].value;
               <label htmlFor="location" className="block text-gray-600">
                 Select Your Category
               </label>
-              <CategorySlot selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></CategorySlot>
+              <CategorySlot
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+              ></CategorySlot>
             </div>
             {/*  */}
           </div>
