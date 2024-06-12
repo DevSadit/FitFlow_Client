@@ -7,7 +7,7 @@ const useNewsletterUsers = () => {
   const [newsletterUsers, setNewsletterUsers] = useState([]);
 
   // fetched the newsletter users data using tenstack
-  const { data: newsletterUser = [] } = useQuery({
+  const { data: newsletterUser = [], isLoading } = useQuery({
     queryKey: ["newsletterUser"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/newsletter`);
@@ -20,7 +20,7 @@ const useNewsletterUsers = () => {
   useEffect(() => {
     setNewsletterUsers(newsletterUser);
   }, [newsletterUser]);
-  return newsletterUsers;
+  return {newsletterUsers, isLoading};
 };
 
 export default useNewsletterUsers;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 // import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import TrainerRow from "./TrainerRow";
+import LoadingSpinner from "../../../Shared/LoadingSpinner";
 
 const AdminTrainers = () => {
   const status = `Accepted`
@@ -10,7 +11,7 @@ const AdminTrainers = () => {
 //   const axiosSecure = useAxiosSecure();
   const [trainers, setTrainers] = useState([]);
   // fetched the trainers data using tenstack
-  const { data: trainer = [], refetch } = useQuery({
+  const { data: trainer = [], refetch, isLoading } = useQuery({
     queryKey: ["trainer"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/trainers/${status}`);
@@ -23,6 +24,11 @@ const AdminTrainers = () => {
   useEffect(() => {
     setTrainers(trainer);
   }, [trainer]);
+
+      if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+      }
+
   return (
     <div>
       <h1 className="text-4xl font-medium">

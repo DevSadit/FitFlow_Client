@@ -14,6 +14,9 @@ import AdmApliedTrainers from "../Pages/Admin Pages/AdmApliedTrainers/AdmApliedT
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import AdmAddClasses from "../Pages/Admin Pages/AdmAddClasses/AdmAddClasses";
 import RecentPosts from "../Pages/Home/RecentPosts";
+import AdmBallance from "../Pages/Admin Pages/AdminBallance/AdmBallance";
+import MemberProfile from "../Pages/Member Pages/MemberProfile";
+import RecoClasses from "../Pages/Member Pages/RecoClasses";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +45,9 @@ const router = createBrowserRouter([
         path: "/trainerDetails/:id",
         element: <TrainerDetails></TrainerDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/trainer/${params.id}`),
+          fetch(
+            `https://fitness-tracker-server-ruddy.vercel.app/trainer/${params.id}`
+          ),
       },
       {
         path: "/posts",
@@ -86,6 +91,10 @@ const router = createBrowserRouter([
         path: "add-classes",
         element: <AdmAddClasses></AdmAddClasses>,
       },
+      {
+        path: "ballance",
+        element: <AdmBallance></AdmBallance>,
+      },
 
       // trainer routes
       {
@@ -97,6 +106,14 @@ const router = createBrowserRouter([
       {
         path: "apliedTrainers",
         element: <AdmApliedTrainers></AdmApliedTrainers>,
+      },
+      {
+        path: "myProfile",
+        element: <MemberProfile></MemberProfile>,
+      },
+      {
+        path: "reco-classes",
+        element: <RecoClasses></RecoClasses>,
       },
     ],
   },

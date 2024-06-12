@@ -5,13 +5,16 @@ import ApliedTrainerRow from "./ApliedTrainerRow"
 import noDataFound from "../../../../assets/data_not_found.svg";
 import useAuthContext from "../../../hooks/useAuthContext";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../Shared/LoadingSpinner";
+import useRole from "../../../hooks/useRole";
 const AdmApliedTrainers = () => {
   const { user } = useAuthContext();
+  const [roleFromHook] = useRole();
   const [appliedTrainers, setAppliedTrainers] = useState([]);
   const axiosSecure = useAxiosSecure();
   const status = `Pending`;
   // fetched the trainers data using tenstack
-  const { data: trainer = [], refetch } = useQuery({
+  const { data: trainer = [], refetch, isLoading } = useQuery({
     queryKey: ["trainer"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/trainers/${status}`);
@@ -24,6 +27,14 @@ const AdmApliedTrainers = () => {
   useEffect(() => {
     setAppliedTrainers(trainer);
   }, [trainer]);
+
+    if (isLoading) {
+      return (
+        <LoadingSpinner></LoadingSpinner>
+      );
+    }
+
+
   return (
     <>
       {appliedTrainers.length > 0 ? (
@@ -53,12 +64,13 @@ const AdmApliedTrainers = () => {
                         Status
                       </th>
 
-                      <th
+                      {roleFromHook ==="Admin" &&
+                        <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
                         Action
-                      </th>
+                      </th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -68,6 +80,7 @@ const AdmApliedTrainers = () => {
                         key={appTrainer._id}
                         appTrainer={appTrainer}
                         user={user}
+                        roleFromHook={roleFromHook}
                         refetch={refetch}
                       ></ApliedTrainerRow>
                     ))}

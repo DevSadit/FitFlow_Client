@@ -1,9 +1,13 @@
+import LoadingSpinner from "../../../Shared/LoadingSpinner";
 import useNewsletterUsers from "../../../hooks/useNewsletterUsers";
 import NUserTable from "./NUserTable";
 
 const NewsletterSubsc = () => {
-  const newsletterUsers = useNewsletterUsers();
+  const {newsletterUsers, isLoading} = useNewsletterUsers();
   //   console.log(newsletterUsers);
+      if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+      }
   return (
     <div className="overflow-x-auto">
       <h1 className="text-4xl font-medium">

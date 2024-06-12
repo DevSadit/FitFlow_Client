@@ -5,7 +5,7 @@ const MemberMenuList = () => {
     <div>
       <ul className="menu space-y-3 text-white font-semibold mt-12">
         <li>
-          <NavLink className="uppercase" to="/dashboard/profile">
+          <NavLink className="uppercase" to="/dashboard/myProfile">
             <FaHome />
             Profile
           </NavLink>
