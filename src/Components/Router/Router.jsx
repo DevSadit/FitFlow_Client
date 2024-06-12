@@ -13,6 +13,7 @@ import AdminTrainers from "../Pages/Admin Pages/AdminTrainers/AdminTrainers";
 import AdmApliedTrainers from "../Pages/Admin Pages/AdmApliedTrainers/AdmApliedTrainers";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import AdmAddClasses from "../Pages/Admin Pages/AdmAddClasses/AdmAddClasses";
+import RecentPosts from "../Pages/Home/RecentPosts";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/trainer/${params.id}`),
       },
+      {
+        path: "/posts",
+        element: <RecentPosts></RecentPosts>,
+      },
     ],
   },
 
@@ -58,6 +63,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       // admin routes
       {
@@ -79,6 +85,18 @@ const router = createBrowserRouter([
       {
         path: "add-classes",
         element: <AdmAddClasses></AdmAddClasses>,
+      },
+
+      // trainer routes
+      {
+        path: "add-post",
+        element: <AdmAddClasses></AdmAddClasses>,
+      },
+
+      // member routes
+      {
+        path: "apliedTrainers",
+        element: <AdmApliedTrainers></AdmApliedTrainers>,
       },
     ],
   },

@@ -1,5 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
-import image from "../../assets/beatrainer.jpg"
+import { format, parse } from "date-fns";
+import image from "../../assets/beatrainer.jpg";
 const TrainerDetails = () => {
   const trainerDatas = useLoaderData();
   const {
@@ -15,6 +16,15 @@ const TrainerDetails = () => {
     certification,
     pic,
   } = trainerDatas;
+
+
+  function convertTo12HourFormatFunny(time) {
+  const [hour, minute] = time.split(':');
+  const period = hour >= 12 ? 'PM' : 'AM';
+  const adjustedHour = hour % 12 || 12;
+
+  return `${adjustedHour}:${minute} ${period}`;
+}
   return (
     <div>
       {/* header */}
@@ -52,9 +62,11 @@ const TrainerDetails = () => {
       </div>
 
       {/* about */}
-      <div className="bg-[#F2F2F2] p-10">
-        <h1 className="text-5xl font-semibold">About Coach {name}</h1>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mt-10">
+      <div className="bg-[#F2F2F2] gap-x-3 justify-between items-center flex p-10">
+        <div className="md:w-1/2 lg:h-[600px] border-4 rounded-lg p-3  border-[#0fc050]  md:space-y-5 mt-8">
+          <h1 className="text-4xl italic font-semibold">
+            About Coach <br /> {name}
+          </h1>
           {/* b1 */}
           <div className="bg-white rounded-xl p-4">
             <h3 className="text-green-500 font-bold text-xl">
@@ -83,6 +95,23 @@ const TrainerDetails = () => {
               A kettlebell total body workout! It’ll leave you on the floor for
               at least 15 minutes afterward in glorious exhaustion.
             </p>
+          </div>
+        </div>
+        <div className="md:w-1/2 lg:h-[600px] border-4 rounded-lg p-3  border-[#0fc050] md:space-y-5 mt-8">
+          <h1 className="text-4xl italic font-semibold">
+            {name}
+            {"'s training Slots"}
+          </h1>
+          <div className="">
+            {availableDay.map((day, i) => (
+              <div
+                key={i}
+                className="p-4 text-xl italic font-medium bg-[#FFC96F] rounded-lg mb-3"
+              >
+                <p>{convertTo12HourFormatFunny(availableTime[0])}</p>
+                <p>{day.value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -24,14 +24,14 @@ const RecentPosts = () => {
   }, [psts]);
 
   return (
-    <div>
+    <div className="my-12">
       <CompoHeading
-        normHeading={`Recent`}
+        normHeading={`Latest`}
         colorHeading={`Post's`}
       ></CompoHeading>
       <p>{posts.length}</p>
 
-      <div className="mt-10 grid grid-cols-3">
+      <div className="mt-10 gap-10 grid grid-cols-3">
         {posts.map((post) => (
          <Post key={post._id} post={post}></Post>
         ))}

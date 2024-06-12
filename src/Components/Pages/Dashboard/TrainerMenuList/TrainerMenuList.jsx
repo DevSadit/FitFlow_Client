@@ -18,7 +18,7 @@ const TrainerMenuList = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="uppercase" to="/dashboard/adm-forum">
+          <NavLink className="uppercase" to="/dashboard/add-post">
             <HiOutlineMenu />
             Add New Forum
           </NavLink>

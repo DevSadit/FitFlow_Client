@@ -11,7 +11,7 @@ const MemberMenuList = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="uppercase" to="/dashboard/activity-log">
+          <NavLink className="uppercase" to="/dashboard/apliedTrainers">
             <FaCalendar />
             Activity Log
           </NavLink>

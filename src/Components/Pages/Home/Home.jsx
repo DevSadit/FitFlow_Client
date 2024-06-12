@@ -1,3 +1,4 @@
+import AllClasses from "../AllClasses/AllClasses";
 import AboutUs from "./AboutUs";
 import Banner from "./Banner";
 import Features from "./Features";
@@ -13,6 +14,7 @@ const Home = () => {
           <Features></Features>
           <AboutUs></AboutUs>
           <Testimonials></Testimonials>
+          <AllClasses></AllClasses>
           <RecentPosts></RecentPosts>
           <OurTrainers></OurTrainers>
           <NewsLetter></NewsLetter>

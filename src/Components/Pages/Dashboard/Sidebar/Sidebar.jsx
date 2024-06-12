@@ -5,9 +5,12 @@ import AdminMenuList from "../AdminMenuList/AdminMenuList";
 import MemberMenuList from "../MemberMenuList/MemberMenuList";
 import TrainerMenuList from "../TrainerMenuList/TrainerMenuList";
 import useRole from "../../../hooks/useRole";
+import { SlLogout } from "react-icons/sl";
+import useAuthContext from "../../../hooks/useAuthContext";
 
 const Sidebar = () => {
   const [role, isLoading] = useRole();
+  const { logOut } = useAuthContext();
   // console.log(role);
   const isAdmin = false;
   const isMember = false;
@@ -27,22 +30,10 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="uppercase" to="/">
-            <FaLine />
-            menu
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="uppercase" to="/">
-            <FaShop />
-            shop
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="uppercase" to="/">
-            <FaInbox />
-            Contact
-          </NavLink>
+          <button onClick={logOut}>
+            <SlLogout />
+            LogOut
+          </button>
         </li>
       </ul>
     </div>

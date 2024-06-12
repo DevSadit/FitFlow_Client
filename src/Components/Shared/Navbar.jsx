@@ -22,7 +22,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="font-bold text-white text-lg" to="/forums">
+        <Link className="font-bold text-white text-lg" to="/posts">
           <div>Forums</div>
         </Link>
       </li>
