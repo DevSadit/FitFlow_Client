@@ -51,9 +51,6 @@ const TrainerDetails = () => {
             <h4 className="my-10 text-2xl">Description</h4>
             <p className="">{bio}</p>
           </div>
-          <button className="px-6 mt-4 py-4 text-white font-bold bg-green-500 hover:bg-green-600">
-            Book Now
-          </button>
         </div>
         {/* image */}
         <div className="">
@@ -102,15 +99,14 @@ const TrainerDetails = () => {
             {name}
             {"'s training Slots"}
           </h1>
-          <div className="mt-5">
+          <div className="mt-5 grid grid-cols-3 gap-4">
             {availableDay.map((day, i) => (
-              <div
-                key={i}
-                className="p-4 hover:bg-[#9c7430] text-xl italic font-medium bg-[#FFC96F] cursor-pointer rounded-lg mb-3"
-              >
-                <p>{convertTo12HourFormatFunny(availableTime[0])}</p>
-                <p>{day.value}</p>
-              </div>
+              <Link key={i} to={`/trainer-booked/${_id}`}>
+                <div className="p-4 hover:bg-[#55dcf4] text-xl italic font-medium bg-[#CAF0F8] cursor-pointer rounded-lg mb-3">
+                  <p>{convertTo12HourFormatFunny(availableTime[0])}</p>
+                  <p>{day.value}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>

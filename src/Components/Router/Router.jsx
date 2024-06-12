@@ -20,6 +20,8 @@ import RecoClasses from "../Pages/Member Pages/RecoClasses";
 import PrivateRoute from "./PrivateRoute";
 import TrainerRoute from "./TrainerRoute";
 import AdminRoute from "./AdminRoute";
+import MainDash from "../Shared/MainDash";
+import TrainerBooked from "../Shared/TrainerBooked";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "/be-a-trainer",
         element: <BeATrainer></BeATrainer>,
+      },
+      {
+        path: "/trainer-booked/:id",
+        element: <TrainerBooked></TrainerBooked>,
+        loader: ({ params }) =>
+          fetch(
+            `https://fitness-tracker-server-ruddy.vercel.app/trainer/${params.id}`
+          ),
       },
       {
         path: "/trainerDetails/:id",
@@ -80,13 +90,7 @@ const router = createBrowserRouter([
       // admin routes
       {
         index: true,
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <NewsletterSubsc></NewsletterSubsc>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
+        element: <MainDash></MainDash>
       },
       {
         path: "newsletter-subsc",
