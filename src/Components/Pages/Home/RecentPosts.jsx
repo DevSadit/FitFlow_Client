@@ -29,9 +29,9 @@ const RecentPosts = () => {
         normHeading={`Latest`}
         colorHeading={`Post's`}
       ></CompoHeading>
-      <p>{posts.length}</p>
+    
 
-      <div className="mt-10 gap-10 grid grid-cols-3">
+      <div className="mt-10 gap-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {posts.map((post) => (
          <Post key={post._id} post={post}></Post>
         ))}

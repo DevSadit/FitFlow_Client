@@ -38,22 +38,29 @@ const Testimonials = () => {
         What Our <span className="text-[#ffbe0b]">Client</span> Says
       </h1>
 
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        {testimonials.map((testimonial) => (
-          <SwiperSlide key={testimonial._id}>
-            <div className="flex flex-col text-center gap-4 items-center px-80 py-12">
-              <img className="w-20 h-20 rounded-full" src={testimonial.image} />
-              <h3 className="font-bold uppercase text-2xl ">
-                {testimonial.name}
-              </h3>
-              <p>{testimonial.location}</p>
-              <FaQuoteLeft className="w-10 h-10 mt-3" />
-              <p className="italic font-semibold">{testimonial.testimonial}</p>
-              <FaQuoteRight className="w-10 h-10 mt-3" />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div>
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+          {testimonials.map((testimonial) => (
+            <SwiperSlide key={testimonial._id}>
+              <div className="flex flex-col text-center gap-4 items-center lg:px-80 px-5 py-12">
+                <img
+                  className="w-20 h-20 rounded-full"
+                  src={testimonial.image}
+                />
+                <h3 className="font-bold uppercase text-2xl ">
+                  {testimonial.name}
+                </h3>
+                <p>{testimonial.location}</p>
+                <FaQuoteLeft className="w-10 h-10 mt-3" />
+                <p className="italic font-semibold">
+                  {testimonial.testimonial}
+                </p>
+                <FaQuoteRight className="w-10 h-10 mt-3" />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

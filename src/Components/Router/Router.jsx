@@ -17,6 +17,9 @@ import RecentPosts from "../Pages/Home/RecentPosts";
 import AdmBallance from "../Pages/Admin Pages/AdminBallance/AdmBallance";
 import MemberProfile from "../Pages/Member Pages/MemberProfile";
 import RecoClasses from "../Pages/Member Pages/RecoClasses";
+import PrivateRoute from "./PrivateRoute";
+import TrainerRoute from "./TrainerRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -67,53 +70,112 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       // admin routes
       {
         index: true,
-        element: <NewsletterSubsc></NewsletterSubsc>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <NewsletterSubsc></NewsletterSubsc>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "newsletter-subsc",
-        element: <NewsletterSubsc></NewsletterSubsc>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <NewsletterSubsc></NewsletterSubsc>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-trainers",
-        element: <AdminTrainers></AdminTrainers>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminTrainers></AdminTrainers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "applied-trainers",
-        element: <AdmApliedTrainers></AdmApliedTrainers>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              {" "}
+              <AdmApliedTrainers></AdmApliedTrainers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-classes",
-        element: <AdmAddClasses></AdmAddClasses>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdmAddClasses></AdmAddClasses>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "ballance",
-        element: <AdmBallance></AdmBallance>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdmBallance></AdmBallance>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
 
       // trainer routes
       {
         path: "add-post",
-        element: <AdmAddClasses></AdmAddClasses>,
+        element: (
+          <PrivateRoute>
+            <TrainerRoute>
+              <AdmAddClasses></AdmAddClasses>
+            </TrainerRoute>
+          </PrivateRoute>
+        ),
       },
 
       // member routes
       {
         path: "apliedTrainers",
-        element: <AdmApliedTrainers></AdmApliedTrainers>,
+        element: (
+          <PrivateRoute>
+            <AdmApliedTrainers></AdmApliedTrainers>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myProfile",
-        element: <MemberProfile></MemberProfile>,
+        element: (
+          <PrivateRoute>
+            <MemberProfile></MemberProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "reco-classes",
-        element: <RecoClasses></RecoClasses>,
+        element: (
+          <PrivateRoute>
+            <RecoClasses></RecoClasses>
+          </PrivateRoute>
+        ),
       },
     ],
   },

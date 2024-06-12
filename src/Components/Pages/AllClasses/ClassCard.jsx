@@ -33,11 +33,11 @@ const ClassCard = ({ singleClass }) => {
   const shortDescription = description.split(".").splice(0, 1).join(".");
   return (
     <>
-      <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-          <img className="p-8 h-96 mx-auto" src={picLink} alt="product image" />
-        </a>
-        <div className="px-5 pb-5 text-center">
+      <div className="w-full md:mx-0 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="">
+          <img className="p-8 mx-0 " src={picLink} alt="product image" />
+        </div>
+        <div className="px-4 pb-4 text-center">
           <a href="#">
             <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
               {classname}

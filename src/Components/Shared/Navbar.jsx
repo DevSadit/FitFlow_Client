@@ -7,22 +7,22 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <Link className="font-bold text-white text-lg" to="/">
+        <Link className="font-bold text-black text-lg" to="/">
           <div>Home</div>
         </Link>
       </li>
       <li>
-        <Link className="font-bold text-white text-lg" to="/allTrainers">
+        <Link className="font-bold text-black text-lg" to="/allTrainers">
           <div>All Trainers</div>
         </Link>
       </li>
       <li>
-        <Link className="font-bold text-white text-lg" to="/allClasses">
+        <Link className="font-bold text-black text-lg" to="/allClasses">
           <div>All Classes</div>
         </Link>
       </li>
       <li>
-        <Link className="font-bold text-white text-lg" to="/posts">
+        <Link className="font-bold text-black text-lg" to="/posts">
           <div>Forums</div>
         </Link>
       </li>
@@ -30,7 +30,7 @@ const Navbar = () => {
         ""
       ) : (
         <li>
-          <Link className="font-bold text-white text-lg" to="/login">
+          <Link className="font-bold text-black text-lg" to="/login">
             <div>Login</div>
           </Link>
         </li>
@@ -59,7 +59,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navLinks}
           </ul>

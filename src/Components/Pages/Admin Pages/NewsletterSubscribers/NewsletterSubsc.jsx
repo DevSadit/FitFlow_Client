@@ -9,7 +9,7 @@ const NewsletterSubsc = () => {
         return <LoadingSpinner></LoadingSpinner>;
       }
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto md:mx-20 lg:mx-40 mx-8">
       <h1 className="text-4xl font-medium">
         Total Newsletter {"Subscriber's"} {newsletterUsers.length}
       </h1>

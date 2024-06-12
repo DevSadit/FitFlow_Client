@@ -25,8 +25,8 @@ const NewsLetter = () => {
   };
   //
   return (
-    <div className="px-3">
-      <section className="flex flex-col bg-[#57cc99] container md:my-28 max-w-5xl mx-auto overflow-hidden  rounded-xl shadow-xl shadow-[#c7f9cc] dark:bg-gray-800 md:flex-row md:h-80">
+    <div className="my-12">
+      <section className="flex my-12 flex-col bg-[#57cc99] container md:my-28 max-w-5xl mx-auto overflow-hidden  rounded-xl shadow-xl shadow-[#c7f9cc] dark:bg-gray-800 md:flex-row md:h-80">
         <div className="md:flex md:items-center md:justify-center md:w-1/2  md:dark:bg-gray-800">
           <div className="px-6 py-6 md:px-8 md:py-0">
             <h2 className="text-3xl font-bold text-black dark:text-white text-center md:text-left">

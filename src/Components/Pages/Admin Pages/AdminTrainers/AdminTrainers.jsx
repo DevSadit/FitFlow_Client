@@ -30,7 +30,7 @@ const AdminTrainers = () => {
       }
 
   return (
-    <div>
+    <div className="md:mx-20 lg:mx-40 mx-8">
       <h1 className="text-4xl font-medium">
         Total {"Trainer's"} {trainers.length}
       </h1>

@@ -62,8 +62,8 @@ const TrainerDetails = () => {
       </div>
 
       {/* about */}
-      <div className="bg-[#F2F2F2] gap-x-3 justify-between items-center flex p-10">
-        <div className="md:w-1/2 lg:h-[600px] border-4 rounded-lg p-3  border-[#0fc050]  md:space-y-5 mt-8">
+      <div className="bg-[#F2F2F2] gap-x-3 justify-between items-center flex md:flex-row flex-col p-10">
+        <div className="md:w-1/2 lg:h-[600px] border-4 rounded-lg p-3 md:h-[700px] border-[#0fc050]  md:space-y-5 mt-8">
           <h1 className="text-4xl italic font-semibold">
             About Coach <br /> {name}
           </h1>
@@ -97,16 +97,16 @@ const TrainerDetails = () => {
             </p>
           </div>
         </div>
-        <div className="md:w-1/2 lg:h-[600px] border-4 rounded-lg p-3  border-[#0fc050] md:space-y-5 mt-8">
+        <div className="md:w-1/2 md:h-[700px] lg:h-[600px] border-4 rounded-lg p-3  border-[#0fc050] md:space-y-5 mt-8">
           <h1 className="text-4xl italic font-semibold">
             {name}
             {"'s training Slots"}
           </h1>
-          <div className="">
+          <div className="mt-5">
             {availableDay.map((day, i) => (
               <div
                 key={i}
-                className="p-4 text-xl italic font-medium bg-[#FFC96F] rounded-lg mb-3"
+                className="p-4 hover:bg-[#9c7430] text-xl italic font-medium bg-[#FFC96F] cursor-pointer rounded-lg mb-3"
               >
                 <p>{convertTo12HourFormatFunny(availableTime[0])}</p>
                 <p>{day.value}</p>

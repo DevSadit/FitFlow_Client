@@ -3,9 +3,9 @@ const Footer = () => {
     <footer className="footer text-white font-bold bg-[#57cc99] p-10">
       <aside>
         <p>
-          ACME Industries Ltd.
+         Fit Flow Ltd.
           <br />
-          Providing reliable tech since 1992
+          Providing reliable tech since 2020
         </p>
       </aside>
       <nav>

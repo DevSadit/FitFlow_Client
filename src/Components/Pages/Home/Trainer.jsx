@@ -53,7 +53,7 @@ const Trainer = ({ trainer }) => {
           {name}
         </h1>
 
-        <p className="py-2 text-gray-700 h-28 dark:text-gray-400">{shortBio}</p>
+        <p className="py-2 text-gray-700 h-40 dark:text-gray-400">{shortBio}</p>
         {/* <hr className="mb-3" /> */}
         {/* <h3 className="text-lg mb-2 font-semibold">Slots:</h3> */}
         {/* {

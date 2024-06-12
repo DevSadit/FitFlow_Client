@@ -11,7 +11,7 @@ const Features = () => {
           Our <span className="text-[#ffbe0b]">Features</span>
         </h1>
         {/* cards */}
-        <div className="grid gap-5 mt-5 md:grid-cols-3">
+        <div className="grid gap-5 mt-5 grid-cols-1 px-4 md:px-0 md:grid-cols-2 lg:grid-cols-3">
           <div className="bg-[#c7f9cc] text-center p-4 space-y-3 rounded-xl">
             <img
               src={pic1}

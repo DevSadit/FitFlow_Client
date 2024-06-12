@@ -56,7 +56,7 @@ const AdmAddclassNamees = () => {
       <h1 className="italic text-center text-3xl font-semibold mt-10">
         Add the Classes here!
       </h1>
-      <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+      <div className="max-w-4xl p-6  mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 ">
         <form onSubmit={handleAddClass}>
           <div className="grid grid-cols-1 gap-6 mt-4 ">
             {/*  */}

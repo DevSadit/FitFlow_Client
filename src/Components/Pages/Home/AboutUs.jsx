@@ -3,13 +3,13 @@ import pic2 from "../../../assets/abou2.jpg"
 
 const AboutUs = () => {
     return (
-      <div className="">
-        <div className="flex mt-20">
-          <div className="text-left w-1/3 pr-5 space-y-4">
-            <h1 className="text-6xl mb-9 italic font-extrabold ">
-              <span className="text-[#ffbe0b]">About </span>
-              Our <span className="text-[#ffbe0b]">Fit</span> Family
-            </h1>
+      <div>
+        <h1 className="text-6xl mx-2 mb-9 italic text-center font-extrabold ">
+          <span className="text-[#ffbe0b]">About </span>
+          Our <span className="text-[#ffbe0b]">Fit</span> Family
+        </h1>
+        <div className="flex flex-col-reverse md:flex-row  mt-20">
+          <div className="md:text-left text-center lg:w-1/3 w-full py-4 md:py-0 pr-5 space-y-4">
             <p>
               Welcome to Fit Flow, where your fitness journey becomes a story of
               progress, passion, and personal transformation. We believe in
