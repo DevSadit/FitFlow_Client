@@ -13,15 +13,16 @@ import {
 import app from "../Firebase/Firebase";
 import useAxiosPublic from "../Components/hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const axiosPublic = useAxiosPublic();
 
   //   creat user with email and password
   const createUser = (email, password) => {
@@ -43,7 +44,12 @@ const AuthProvider = ({ children }) => {
   //   logout the user
   const logOut = async () => {
     setLoading(true);
-    return signOut(auth);
+    try {
+      signOut(auth);
+      localStorage.removeItem("token");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   //   update user profile name and photo url
@@ -54,6 +60,19 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  // get token from server
+  const getToken = async (email) => {
+    const { data } = await axiosPublic
+      .post(`/jwt`, { email }, { withCredentials: true })
+      .then((res) => {
+        // console.log(`token response`, res.data)
+        localStorage.setItem("token", res.data.token);
+      });
+
+    return data;
+  };
+
+  // set role after login
   useEffect(() => {
     if (user && user?.displayName) {
       const userInfo = {
@@ -68,12 +87,16 @@ const AuthProvider = ({ children }) => {
       });
     }
   }, [axiosPublic, user]);
+
   // onAuthStateChange--> Observe the user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("CurrentUser-->", currentUser);
       setLoading(false);
+      if (currentUser) {
+        getToken(currentUser.email);
+      }
     });
     return () => {
       return unsubscribe();

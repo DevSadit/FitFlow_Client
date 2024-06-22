@@ -30,7 +30,7 @@ const ClassCard = ({ singleClass }) => {
     setTeachers(classTrainer);
   }, [classTrainer]);
   //
-  const shortDescription = description.split(".").splice(0, 1).join(".");
+  // const shortDescription = description.split(".").splice(0, 1).join(".");
   return (
     <>
       <div className="w-full md:mx-0 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -44,7 +44,7 @@ const ClassCard = ({ singleClass }) => {
             </h5>
           </a>
           <div className="mt-2.5  mb-5">
-            <p className="md:h-12">{shortDescription}</p>
+            {/* <p className="md:h-12">{}</p> */}
           </div>
           <div>
             <h3 className="text-2xl text-left text-gray-900">
@@ -66,7 +66,7 @@ const ClassCard = ({ singleClass }) => {
               ))}
             </div>
             <a
-              href="#"
+              href=""
               className="text-white bg-[#57CC99] hover:bg-[#296e50] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               Join Now

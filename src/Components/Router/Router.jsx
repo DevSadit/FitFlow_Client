@@ -13,7 +13,6 @@ import AdminTrainers from "../Pages/Admin Pages/AdminTrainers/AdminTrainers";
 import AdmApliedTrainers from "../Pages/Admin Pages/AdmApliedTrainers/AdmApliedTrainers";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import AdmAddClasses from "../Pages/Admin Pages/AdmAddClasses/AdmAddClasses";
-import RecentPosts from "../Pages/Home/RecentPosts";
 import AdmBallance from "../Pages/Admin Pages/AdminBallance/AdmBallance";
 import MemberProfile from "../Pages/Member Pages/MemberProfile";
 import RecoClasses from "../Pages/Member Pages/RecoClasses";
@@ -22,7 +21,9 @@ import TrainerRoute from "./TrainerRoute";
 import AdminRoute from "./AdminRoute";
 import MainDash from "../Shared/MainDash";
 import TrainerBooked from "../Shared/TrainerBooked";
-
+import ManageSlotts from "../Pages/Trainer Pages/ManageSlotts";
+import AllPosts from "../Pages/AllPosts/AllPosts";
+import AddForum from "../Pages/Trainer Pages/AddForum";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
       {
         path: "/allClasses",
         element: <AllClasses></AllClasses>,
+        loader: () =>
+          fetch(`https://fitness-tracker-server-ruddy.vercel.app/classesCount`),
       },
       {
         path: "/be-a-trainer",
@@ -48,7 +51,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/trainer-booked/:id",
-        element: <TrainerBooked></TrainerBooked>,
+        element: (
+          <PrivateRoute>
+            <TrainerBooked></TrainerBooked>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://fitness-tracker-server-ruddy.vercel.app/trainer/${params.id}`
@@ -64,7 +71,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/posts",
-        element: <RecentPosts></RecentPosts>,
+        element: <AllPosts></AllPosts>,
+        loader: () =>
+          fetch(`https://fitness-tracker-server-ruddy.vercel.app/postsCount`),
       },
     ],
   },
@@ -90,7 +99,7 @@ const router = createBrowserRouter([
       // admin routes
       {
         index: true,
-        element: <MainDash></MainDash>
+        element: <MainDash></MainDash>,
       },
       {
         path: "newsletter-subsc",
@@ -117,7 +126,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              {" "}
               <AdmApliedTrainers></AdmApliedTrainers>
             </AdminRoute>
           </PrivateRoute>
@@ -128,7 +136,7 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <AdmAddClasses></AdmAddClasses>
+              <AddForum></AddForum>
             </AdminRoute>
           </PrivateRoute>
         ),
@@ -150,7 +158,17 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <TrainerRoute>
-              <AdmAddClasses></AdmAddClasses>
+              <AddForum></AddForum>
+            </TrainerRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-slots",
+        element: (
+          <PrivateRoute>
+            <TrainerRoute>
+              <ManageSlotts></ManageSlotts>
             </TrainerRoute>
           </PrivateRoute>
         ),

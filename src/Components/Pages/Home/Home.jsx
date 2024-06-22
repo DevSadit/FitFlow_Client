@@ -1,5 +1,5 @@
-import AllClasses from "../AllClasses/AllClasses";
 import AboutUs from "./AboutUs";
+import AllClassesHome from "./AllClassesHome";
 import Banner from "./Banner";
 import Features from "./Features";
 import NewsLetter from "./Newsletter";
@@ -9,16 +9,16 @@ import Testimonials from "./Testimonials";
 
 const Home = () => {
     return (
-        <div className="space-y-12">
-          <Banner></Banner>
-          <Features></Features>
-          <AboutUs></AboutUs>
-          <Testimonials></Testimonials>
-          <AllClasses></AllClasses>
-          <RecentPosts></RecentPosts>
-          <OurTrainers></OurTrainers>
-          <NewsLetter></NewsLetter>
-        </div>
+      <div className="space-y-12">
+        <Banner></Banner>
+        <Features></Features>
+        <AboutUs></AboutUs>
+        <Testimonials></Testimonials>
+        <AllClassesHome></AllClassesHome>
+        <RecentPosts></RecentPosts>
+        <OurTrainers></OurTrainers>
+        <NewsLetter></NewsLetter>
+      </div>
     );
 };
 

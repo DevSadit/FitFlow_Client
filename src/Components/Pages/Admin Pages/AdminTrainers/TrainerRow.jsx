@@ -10,7 +10,10 @@ const TrainerRow = ({ i, trainer, refetch }) => {
   const { _id, name, bio, expertise, pic, experience, slots } = trainer;
 
   const handleDelete = async (id) => {
-    console.log(id);
+
+    // console.log(id);
+
+    
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

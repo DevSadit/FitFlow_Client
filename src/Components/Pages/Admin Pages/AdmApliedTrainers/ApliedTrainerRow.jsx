@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 /* eslint-disable react/prop-types */
 const ApliedTrainerRow = ({ user, appTrainer, roleFromHook, refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // const [isReject, setIsReject] = useState(false);
   const axiosSecure = useAxiosSecure();
 
   //

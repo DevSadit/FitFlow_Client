@@ -22,12 +22,12 @@ if (isLoading){
     return <LoadingSpinner></LoadingSpinner>
 }
   return (
-    <div>
+    <div className="container mx-auto px-4 sm:px-8">
       <h1 className="italic text-3xl font-semibold mt-10">
         Recommended Classes
       </h1>
 
-      <div className="grid grid-cols-3 mt-14 lg:gap-x-20">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  mt-14 lg:gap-x-20 md:gap-x-10 gap-x-6">
         {recoClasses.map((singleClass) => (
           <ClassCard
             key={singleClass._id}

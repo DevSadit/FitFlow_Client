@@ -6,7 +6,10 @@ const TrainerMenuList = () => {
     <div>
       <ul className="menu space-y-3 mt-12 text-white font-semibold">
         <li>
-          <NavLink className="uppercase" to="/dashboard/manage-slots">
+          <NavLink
+            to="/dashboard/manage-slots"
+            className="uppercase"
+          >
             <FaHome />
             Manage Slots
           </NavLink>

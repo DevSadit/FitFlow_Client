@@ -39,6 +39,11 @@ const AdmApliedTrainers = () => {
     <>
       {appliedTrainers.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">
+          {/*  */}
+          <h1 className="text-4xl font-medium">
+            Total Aplied {"Trainer's"} {appliedTrainers.length}
+          </h1>
+          {/*  */}
           <div className="py-8">
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -64,13 +69,14 @@ const AdmApliedTrainers = () => {
                         Status
                       </th>
 
-                      {roleFromHook ==="Admin" &&
+                      {roleFromHook === "Admin" && (
                         <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Action
-                      </th>}
+                          scope="col"
+                          className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                        >
+                          Action
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   <tbody>
