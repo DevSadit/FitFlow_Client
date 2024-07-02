@@ -1,5 +1,5 @@
 
-# ZenZap
+# Fit Flow
 - ## Live Side Url: https://fitness-tracker-d37b8.web.app
 
 ## 🚀 Run this Project in Your Local Machine
@@ -53,7 +53,7 @@ Open your browser and navigate to `http://localhost:3000` to see the project in 
 
 ## Overview
 
-The **Fitness Tracker Server** is a powerful backend application built with Node.js, Express, and MongoDB to support a comprehensive fitness tracking platform. It features robust dashboards for admins, trainers, and members, enabling efficient management of users, classes, and schedules. The platform offers real-time class booking, calendar integration, automated reminders, and seamless communication tools. Designed with a responsive UI, it ensures a smooth user experience across all devices. Detailed analytics and reporting tools provide valuable insights to optimize performance and user engagement.
+The **Fitness Tracker** is a powerful client application built with React js, tailwind, firebase and many more.   to support a comprehensive fitness tracking platform. It features robust dashboards for admins, trainers, and members, enabling efficient management of users, classes, and schedules. The platform offers real-time class booking, calendar integration, automated reminders, and seamless communication tools. Designed with a responsive UI, it ensures a smooth user experience across all devices. Detailed analytics and reporting tools provide valuable insights to optimize performance and user engagement.
 
 
 -  ## NPM Packages which is used in this Project -
