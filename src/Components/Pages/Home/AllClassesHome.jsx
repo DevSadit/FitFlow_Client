@@ -47,7 +47,7 @@ const AllClassesHome = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
           {/* <div className="bg-gradient-to-br from-[#16A34A] to-[#22C55E] rounded-2xl p-4 md:p-6 text-white text-center">
             <FaUsers className="text-2xl md:text-3xl mx-auto mb-2" />
             <div className="text-xl md:text-2xl font-bold">50+</div>
