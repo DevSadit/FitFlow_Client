@@ -9,7 +9,7 @@ import Testimonials from "./Testimonials";
 
 const Home = () => {
     return (
-      <div className="space-y-12">
+      <div className="">
         <Banner></Banner>
         <Features></Features>
         <AboutUs></AboutUs>
