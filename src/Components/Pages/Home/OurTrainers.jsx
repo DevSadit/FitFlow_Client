@@ -70,16 +70,9 @@ const OurTrainers = () => {
         {/* Trainers Grid */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mb-12">
           {trainers.slice(0, 3).map((trainer) => (
-            <div key={trainer._id} className="group">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#16A34A]/10 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 transform hover:scale-105">
-                <div className="relative">
-                  <div className="absolute top-4 right-4 bg-[#16A34A] text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-                    <FaStar className="text-xs" />
-                    Expert
-                  </div>
-                </div>
-                <Trainer trainer={trainer} />
-              </div>
+            <div key={trainer._id}>
+              <Trainer trainer={trainer} />
+              
             </div>
           ))}
         </div>

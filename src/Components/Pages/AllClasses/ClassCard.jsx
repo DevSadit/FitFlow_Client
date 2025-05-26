@@ -41,7 +41,7 @@ const ClassCard = ({ singleClass }) => {
   };
 
   return (
-    <div className="group relative w-full" style={{ height: '650px' }}> {/* Fixed height for consistent sizing */}
+    <div className="group relative w-full" style={{ height: '680px' }}> {/* Fixed height for consistent sizing */}
       {/* Main Card */}
       <div className="relative bg-white dark:bg-gray-900 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col h-full transform hover:-translate-y-2 hover:scale-[1.02]">
         
