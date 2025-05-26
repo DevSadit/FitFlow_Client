@@ -25,7 +25,7 @@ const Trainer = ({ trainer }) => {
   const shortBio = bio.split(".").splice(0, 2).join(".");
 
   return (
-    <div className="group h-[600px] w-full max-w-sm mx-auto overflow-hidden bg-[#111827] rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
+    <div className="group h-[600px] w-full max-w-md mx-auto overflow-hidden bg-[#111827] rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
       {/* Image Container with Overlay */}
       <div className="relative overflow-hidden h-[280px]">
         <img

@@ -4,6 +4,7 @@ import useAllClasses from "../../hooks/useAllClasses";
 import ClassCard from "./ClassCard";
 import { useLoaderData } from "react-router-dom";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import { FaDumbbell, FaFire } from "react-icons/fa";
 
 const AllClasses = () => {
   // const [ classes, isLoading] = useAllClasses();
@@ -56,8 +57,18 @@ const AllClasses = () => {
   };
 
   return (
-    <div className="my-12">
-      <CompoHeading normHeading={`All`} colorHeading={`Classes`}></CompoHeading>
+    <div className="px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden">
+       <div className="text-center my-16">
+        <div className="inline-flex items-center gap-2 bg-[#16A34A]/10 text-[#16A34A] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <FaFire className="text-sm" />
+          Best Classes
+        </div>
+        <CompoHeading
+          normHeading={"Our Popular"}
+          colorHeading="Classes"
+          desc="Meet our certified fitness professionals who are dedicated to helping you achieve your health and wellness goals."
+        />
+      </div>
       <div className="my-12 w-full px-4">
         <br />
         <form onChange={(e) => setSearch(e.target.value)}>
@@ -86,7 +97,7 @@ const AllClasses = () => {
           </label>
         </form>
       </div>
-      <div className="grid md:grid-cols-2 mx-0 lg:mx-4 lg:grid-cols-3 grid-cols-1 lg:gap-x-40 lg:gap-y-20 gap-10 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
         {classes
           .filter((item) => {
             return search.toLowerCase() === ""
@@ -94,10 +105,14 @@ const AllClasses = () => {
               : item.classname.toLowerCase().includes(search);
           })
           .map((singleClass) => (
-            <ClassCard
+            <div
               key={singleClass._id}
-              singleClass={singleClass}
-            ></ClassCard>
+              className="group transform hover:scale-105 transition-all duration-300"
+            >
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#16A34A]/10 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700">
+                <ClassCard singleClass={singleClass} />
+              </div>
+            </div>
           ))}
       </div>
       <div className="text-center my-10 space-x-8">
