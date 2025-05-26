@@ -1,51 +1,206 @@
+import { Link } from "react-router-dom";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaDumbbell, FaArrowRight, FaArrowUp } from "react-icons/fa";
+import { useEffect, useState } from "react";
+
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  
+  // Handle scroll event to show/hide button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+  
   return (
-    <footer className="footer text-white font-bold bg-[#57cc99] p-10">
-      <aside>
-        <p>
-         Fit Flow Ltd.
-          <br />
-          Providing reliable tech since 2020
-        </p>
-      </aside>
-      <nav>
-        <h6 className="footer-title">Social</h6>
-        <div className="grid grid-flow-col gap-4">
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-            </svg>
-          </a>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-            </svg>
-          </a>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-            </svg>
-          </a>
+    <footer className="bg-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-[#57cc99]/10 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-[#57cc99]/5 rounded-full animate-pulse"></div>
+      
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <Link to="/" className="flex items-center gap-2 mb-4 group">
+              <div className="w-10 h-10 bg-[#57cc99] rounded-lg flex items-center justify-center transform transition-transform duration-300 group-hover:rotate-12">
+                <FaDumbbell className="text-white text-xl" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-[#57cc99] to-[#80ed99] bg-clip-text text-transparent">Fit Flow</span>
+            </Link>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Empowering your fitness journey with personalized workouts, expert trainers, and a supportive community.
+            </p>
+            <div className="flex space-x-3 pt-2">
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 hover:bg-[#57cc99] hover:scale-110">
+                <FaFacebook className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 hover:bg-[#57cc99] hover:scale-110">
+                <FaTwitter className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 hover:bg-[#57cc99] hover:scale-110">
+                <FaInstagram className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 hover:bg-[#57cc99] hover:scale-110">
+                <FaYoutube className="text-white" />
+              </a>
+            </div>
+          </div>
+          
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4 relative inline-block">
+              Quick Links
+              <span className="absolute -bottom-1 left-0 w-12 h-1 bg-[#57cc99] rounded-full"></span>
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/allTrainers" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  All Trainers
+                </Link>
+              </li>
+              <li>
+                <Link to="/allClasses" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  All Classes
+                </Link>
+              </li>
+              <li>
+                <Link to="/posts" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  Forums
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Services */}
+          <div>
+            <h3 className="text-lg font-bold mb-4 relative inline-block">
+              Our Services
+              <span className="absolute -bottom-1 left-0 w-12 h-1 bg-[#57cc99] rounded-full"></span>
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  Personal Training
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  Group Classes
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  Nutrition Planning
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-400 hover:text-[#57cc99] transition-colors duration-300 flex items-center gap-1 group">
+                  <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                    <FaArrowRight className="text-xs" />
+                  </span>
+                  Fitness Assessment
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-lg font-bold mb-4 relative inline-block">
+              Newsletter
+              <span className="absolute -bottom-1 left-0 w-12 h-1 bg-[#57cc99] rounded-full"></span>
+            </h3>
+            <p className="text-gray-400 text-sm mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+            <form className="flex flex-col space-y-2">
+              <div className="relative">
+                <input 
+                  type="email" 
+                  placeholder="Your email address" 
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-[#57cc99] transition-colors duration-300 text-sm"
+                />
+                <button 
+                  type="submit" 
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#57cc99] hover:bg-[#80ed99] transition-colors duration-300 rounded-full w-8 h-8 flex items-center justify-center"
+                >
+                  <FaArrowRight className="text-white text-sm" />
+                </button>
+              </div>
+              <p className="text-gray-500 text-xs">We respect your privacy. Unsubscribe at any time.</p>
+            </form>
+          </div>
         </div>
-      </nav>
+        
+        {/* Divider */}
+        <div className="border-t border-gray-800 my-8"></div>
+        
+        {/* Bottom Footer */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+          <p>© {currentYear} Fit Flow. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link to="#" className="hover:text-[#57cc99] transition-colors duration-300">Privacy Policy</Link>
+            <Link to="#" className="hover:text-[#57cc99] transition-colors duration-300">Terms of Service</Link>
+            <Link to="#" className="hover:text-[#57cc99] transition-colors duration-300">Contact Us</Link>
+          </div>
+        </div>
+      </div>
+      
+      {/* Scroll to Top Button */}
+      {showScrollButton && (
+        <button 
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 w-12 h-12 bg-[#16A34A] hover:bg-[#4af071] text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-50 animate-fadeIn"
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp className="text-lg" />
+        </button>
+      )}
     </footer>
   );
 };
