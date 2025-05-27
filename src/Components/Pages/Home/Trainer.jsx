@@ -25,7 +25,7 @@ const Trainer = ({ trainer }) => {
   const shortBio = bio.split(".").splice(0, 2).join(".");
 
   return (
-    <div className="group h-[600px] w-full max-w-md mx-auto overflow-hidden bg-[#111827] rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
+    <div className="group h-[600px] w-full max-w-md mx-auto overflow-hidden bg-white dark:bg-[#111827] rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-800">
       {/* Image Container with Overlay */}
       <div className="relative overflow-hidden h-[280px]">
         <img
@@ -50,7 +50,7 @@ const Trainer = ({ trainer }) => {
       {/* Content Container */}
       <div className="px-6 py-6 flex flex-col h-[320px]">
         {/* Name Section */}
-        <h1 className="text-xl font-bold text-white mb-1">
+        <h1 className="text-xl font-bold text-gray-800 dark:text-white mb-1">
           {name}
         </h1>
         
@@ -58,7 +58,7 @@ const Trainer = ({ trainer }) => {
         <div className="flex items-center gap-x-2 mb-4">
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <p className="text-sm font-medium text-green-500">
+            <p className="text-sm font-medium text-green-600 dark:text-green-500">
               {experience} {"Year's"} of Experience
             </p>
           </div>
@@ -66,22 +66,22 @@ const Trainer = ({ trainer }) => {
         
         {/* Bio Section - Fixed Height */}
         <div className="mb-6">
-          <p className="text-gray-300 text-sm leading-relaxed line-clamp-4">
+          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-4">
             {shortBio}
           </p>
         </div>
         
         {/* Connect With Me Section */}
         <div className="mt-auto">
-          <h3 className="text-xs font-medium text-gray-400 mb-2">Connect With Me</h3>
+          <h3 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">Connect With Me</h3>
           <div className="flex items-center gap-x-3 mb-5">
-            <a href="#" className="text-white hover:text-green-500 transition-colors duration-200">
+            <a href="#" className="text-gray-600 dark:text-white hover:text-green-600 dark:hover:text-green-500 transition-colors duration-200">
               <FaFacebook className="w-5 h-5" />
             </a>
-            <a href="#" className="text-white hover:text-green-500 transition-colors duration-200">
+            <a href="#" className="text-gray-600 dark:text-white hover:text-green-600 dark:hover:text-green-500 transition-colors duration-200">
               <FaInstagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-white hover:text-green-500 transition-colors duration-200">
+            <a href="#" className="text-gray-600 dark:text-white hover:text-green-600 dark:hover:text-green-500 transition-colors duration-200">
               <FaTwitterSquare className="w-5 h-5" />
             </a>
           </div>

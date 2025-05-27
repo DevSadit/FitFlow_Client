@@ -1,5 +1,4 @@
-import { FaLink } from "react-icons/fa";
-import { MdDriveFileRenameOutline } from "react-icons/md";
+import { FaLink, FaUser, FaEnvelope, FaLock, FaDumbbell } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
@@ -26,6 +25,7 @@ const Register = () => {
         toast.error(
           `Password doesn't meet the criteria. Please use at least one uppercase letter, special character, one digit and Minimum length of 6 characters`
         );
+        return;
       }
       // Proceed if password is valid
       // eslint-disable-next-line no-unused-vars
@@ -41,10 +41,11 @@ const Register = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate("/");
     } catch (err) {
       console.log(err);
+      toast.error(err?.message);
     }
-navigate("/");
   };
 
   const handleGoogleLogin = () => {
@@ -61,97 +62,100 @@ navigate("/");
   };
 
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen py-12">
       <div className="container flex items-center justify-center min-h-[calc(100vh-216px)] px-6 mx-auto">
-        <form onSubmit={handleRegister} className="w-full max-w-md">
-          <h1 className="mt-3 text-3xl text-center font-bold text-gray-800 capitalize sm:text-3xl dark:text-white">
-            Create An Account!
-          </h1>
-          {/* nAme field */}
-          <div className="relative flex items-center mt-8">
-            <span className="absolute">
-              <MdDriveFileRenameOutline className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
-            </span>
-
-            <input
-              type="text"
-              name="name"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Your Name"
-            />
-          </div>
-          {/* email field */}
-          <div className="relative flex items-center mt-8">
-            <span className="absolute">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </span>
-
-            <input
-              type="email"
-              name="email"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Email address"
-            />
+        <div className="w-full max-w-md overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+          {/* Logo and Header */}
+          <div className="p-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+            <div className="flex justify-center mb-2">
+              <div className="p-3 bg-white bg-opacity-20 rounded-full backdrop-blur-sm">
+                <FaDumbbell className="w-8 h-8 text-white animate-pulse" />
+              </div>
+            </div>
+            <h1 className="text-3xl font-bold text-center">
+              Create An Account!
+            </h1>
+            <p className="mt-2 text-center text-green-100">Join our fitness community today</p>
           </div>
 
-          {/* photo url field */}
-          <div className="relative flex items-center mt-8">
-            <span className="absolute">
-              <FaLink className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
-            </span>
+          <form onSubmit={handleRegister} className="p-6 space-y-4">
+            {/* Name field */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <FaUser className="w-5 h-5 text-green-500" />
+              </div>
+              <input
+                type="text"
+                name="name"
+                className="block w-full py-3 pl-10 pr-3 text-gray-700 bg-gray-50 border border-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-500 focus:outline-none focus:ring focus:ring-opacity-40 transition-all duration-300"
+                placeholder="Your Name"
+                required
+              />
+            </div>
 
-            <input
-              type="text"
-              name="photo"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Photo URL"
-            />
-          </div>
+            {/* Email field */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <FaEnvelope className="w-5 h-5 text-green-500" />
+              </div>
+              <input
+                type="email"
+                name="email"
+                className="block w-full py-3 pl-10 pr-3 text-gray-700 bg-gray-50 border border-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-500 focus:outline-none focus:ring focus:ring-opacity-40 transition-all duration-300"
+                placeholder="Email address"
+                required
+              />
+            </div>
 
-          <div className="relative flex items-center mt-4">
-            <span className="absolute">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </span>
+            {/* Photo URL field */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <FaLink className="w-5 h-5 text-green-500" />
+              </div>
+              <input
+                type="text"
+                name="photo"
+                className="block w-full py-3 pl-10 pr-3 text-gray-700 bg-gray-50 border border-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-500 focus:outline-none focus:ring focus:ring-opacity-40 transition-all duration-300"
+                placeholder="Photo URL"
+                required
+              />
+            </div>
 
-            <input
-              type="password"
-              name="password"
-              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Password"
-            />
-          </div>
+            {/* Password field */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <FaLock className="w-5 h-5 text-green-500" />
+              </div>
+              <input
+                type="password"
+                name="password"
+                className="block w-full py-3 pl-10 pr-3 text-gray-700 bg-gray-50 border border-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-500 focus:outline-none focus:ring focus:ring-opacity-40 transition-all duration-300"
+                placeholder="Password"
+                required
+              />
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Must contain uppercase, special character, number (min 6 chars)</p>
+            </div>
 
-          <div className="mt-6">
-            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#57cc99] rounded-lg hover:bg-[#039656] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-              Sign Up
-            </button>
+            <div className="mt-2">
+              <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-all duration-300 transform bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 shadow-md hover:shadow-lg">
+                <span className="flex items-center justify-center">
+                  Sign Up
+                </span>
+              </button>
+            </div>
 
-            <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-              or sign in with
-            </p>
+            <div className="relative flex items-center mt-4">
+              <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+              <span className="flex-shrink mx-4 text-gray-600 dark:text-gray-400 text-sm">or sign in with</span>
+              <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+            </div>
 
             <a
               href="#"
               onClick={handleGoogleLogin}
-              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+              className="flex items-center justify-center w-full px-6 py-3 text-gray-700 dark:text-gray-200 transition-colors duration-300 transform border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-200 dark:focus:ring-gray-600 focus:ring-opacity-50"
             >
-              <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
+              <svg className="w-5 h-5 mx-2" viewBox="0 0 40 40">
                 <path
                   d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
                   fill="#FFC107"
@@ -173,17 +177,16 @@ navigate("/");
               <span className="mx-2">Sign in with Google</span>
             </a>
 
-            <div className="mt-6 text-center ">
+            <div className="mt-4 text-center">
               <Link
                 to="/login"
-                href="#"
-                className="text-sm text-[#57cc99] font-semibold hover:underline dark:text-blue-400"
+                className="text-sm text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 font-semibold hover:underline transition-colors duration-300"
               >
-                Already have an account ? Login
+                Already have an account? Login
               </Link>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </section>
   );
