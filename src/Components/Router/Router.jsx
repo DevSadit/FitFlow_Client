@@ -18,11 +18,11 @@ import RecoClasses from "../Pages/Member Pages/RecoClasses";
 import PrivateRoute from "./PrivateRoute";
 import TrainerRoute from "./TrainerRoute";
 import AdminRoute from "./AdminRoute";
-import MainDash from "../Shared/MainDash";
 import TrainerBooked from "../Shared/TrainerBooked";
 import ManageSlotts from "../Pages/Trainer Pages/ManageSlotts";
 import AllPosts from "../Pages/AllPosts/AllPosts";
 import AddForum from "../Pages/Trainer Pages/AddForum";
+import MainDash from "../Pages/Dashboard/MainDash";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
           <PrivateRoute>
-            <MainDash></MainDash>
+            <MainDash/>
           </PrivateRoute>
         ),
       },
