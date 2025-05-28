@@ -30,7 +30,7 @@ const Register = () => {
       // Proceed if password is valid
       // eslint-disable-next-line no-unused-vars
       const result = await createUser(email, password);
-      //   console.log(result);
+      console.log(result);
       await updateUserProfile(name, photo);
       setUser({ ...user, photoURL: photo, displayName: name });
       //   navigate("/");
@@ -75,7 +75,9 @@ const Register = () => {
             <h1 className="text-3xl font-bold text-center">
               Create An Account!
             </h1>
-            <p className="mt-2 text-center text-green-100">Join our fitness community today</p>
+            <p className="mt-2 text-center text-green-100">
+              Join our fitness community today
+            </p>
           </div>
 
           <form onSubmit={handleRegister} className="p-6 space-y-4">
@@ -133,7 +135,9 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Must contain uppercase, special character, number (min 6 chars)</p>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                Must contain uppercase, special character, number (min 6 chars)
+              </p>
             </div>
 
             <div className="mt-2">
@@ -146,7 +150,9 @@ const Register = () => {
 
             <div className="relative flex items-center mt-4">
               <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-              <span className="flex-shrink mx-4 text-gray-600 dark:text-gray-400 text-sm">or sign in with</span>
+              <span className="flex-shrink mx-4 text-gray-600 dark:text-gray-400 text-sm">
+                or sign in with
+              </span>
               <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
             </div>
 

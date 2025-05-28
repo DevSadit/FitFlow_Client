@@ -6,7 +6,6 @@ import Register from "../Pages/Register/Register";
 import AllTrainers from "../Pages/AllTrainer/AllTrainers";
 import TrainerDetails from "../Shared/TrainerDetails";
 import BeATrainer from "../Pages/BeATrainer/BeATrainer";
-import DashboardLayout from "../Pages/Dashboard/DashboardLayout";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import NewsletterSubsc from "../Pages/Admin Pages/NewsletterSubscribers/NewsletterSubsc";
 import AdminTrainers from "../Pages/Admin Pages/AdminTrainers/AdminTrainers";
@@ -75,6 +74,125 @@ const router = createBrowserRouter([
         loader: () =>
           fetch(`https://fitness-tracker-server-ruddy.vercel.app/postsCount`),
       },
+      // member dashboard route (79 to 112)
+
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <MainDash></MainDash>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myProfile",
+        element: (
+          <PrivateRoute>
+            <MemberProfile></MemberProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/apliedTrainers",
+        element: (
+          <PrivateRoute>
+            <AdmApliedTrainers></AdmApliedTrainers>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reco-classes",
+        element: (
+          <PrivateRoute>
+            <RecoClasses></RecoClasses>
+          </PrivateRoute>
+        ),
+      },
+
+      // admin dashboard routes (114 to 163)
+      {
+        path: "dashboard/newsletter-subsc",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <NewsletterSubsc></NewsletterSubsc>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/all-trainers",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminTrainers></AdminTrainers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/applied-trainers",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdmApliedTrainers></AdmApliedTrainers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/add-classes",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdmAddClasses></AdmAddClasses>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/ballance",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdmBallance></AdmBallance>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+
+      //      // trainer routes (167 to 196)
+
+      {
+        path: "dashboard/manage-slots",
+        element: (
+          <PrivateRoute>
+            <TrainerRoute>
+              <ManageSlotts></ManageSlotts>
+            </TrainerRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/add-slots",
+        element: (
+          <PrivateRoute>
+            <TrainerRoute>
+              <ManageSlotts></ManageSlotts>
+            </TrainerRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/add-post",
+        element: (
+          <PrivateRoute>
+            <TrainerRoute>
+              <AddForum></AddForum>
+            </TrainerRoute>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 
@@ -87,119 +205,5 @@ const router = createBrowserRouter([
     element: <Register></Register>,
   },
 
-  {
-    path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardLayout></DashboardLayout>
-      </PrivateRoute>
-    ),
-    errorElement: <ErrorPage></ErrorPage>,
-    children: [
-      // admin routes
-      {
-        index: true,
-        element: <MainDash></MainDash>,
-      },
-      {
-        path: "newsletter-subsc",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <NewsletterSubsc></NewsletterSubsc>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "all-trainers",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <AdminTrainers></AdminTrainers>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "applied-trainers",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <AdmApliedTrainers></AdmApliedTrainers>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "add-classes",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <AddForum></AddForum>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "ballance",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <AdmBallance></AdmBallance>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-
-      // trainer routes
-      {
-        path: "add-post",
-        element: (
-          <PrivateRoute>
-            <TrainerRoute>
-              <AddForum></AddForum>
-            </TrainerRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "manage-slots",
-        element: (
-          <PrivateRoute>
-            <TrainerRoute>
-              <ManageSlotts></ManageSlotts>
-            </TrainerRoute>
-          </PrivateRoute>
-        ),
-      },
-
-      // member routes
-      {
-        path: "apliedTrainers",
-        element: (
-          <PrivateRoute>
-            <AdmApliedTrainers></AdmApliedTrainers>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "myProfile",
-        element: (
-          <PrivateRoute>
-            <MemberProfile></MemberProfile>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "reco-classes",
-        element: (
-          <PrivateRoute>
-            <RecoClasses></RecoClasses>
-          </PrivateRoute>
-        ),
-      },
-    ],
-  },
 ]);
 export default router;
