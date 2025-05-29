@@ -1,6 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { format, parse } from "date-fns";
 import image from "../../assets/beatrainer.jpg";
+import { FaCertificate, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUtensils, FaMountain, FaDumbbell } from "react-icons/fa";
+
 const TrainerDetails = () => {
   const trainerDatas = useLoaderData();
   const {
@@ -17,124 +19,220 @@ const TrainerDetails = () => {
     pic,
   } = trainerDatas;
 
-
   function convertTo12HourFormatFunny(time) {
-  const [hour, minute] = time.split(':');
-  const period = hour >= 12 ? 'PM' : 'AM';
-  const adjustedHour = hour % 12 || 12;
+    const [hour, minute] = time.split(':');
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const adjustedHour = hour % 12 || 12;
 
-  return `${adjustedHour}:${minute} ${period}`;
-}
+    return `${adjustedHour}:${minute} ${period}`;
+  }
+
   return (
-    <div>
-      {/* header */}
-      <div className="flex flex-col md:flex-row items-center justify-between min-h-[calc(100vh-216px)] p-10 bg-[#caf0f8]">
-        {/* heading */}
-        <div className="w-full ">
-          <p className="italic text-2xl font-normal">
-            Meet Your {expertise} Coach
-          </p>
-          <h1 className="text-5xl font-semibold">
-            Hi there, <br /> {"I'm"} {name}!
-          </h1>
-          <h4 className="my-10 text-2xl">Certifications</h4>
-          {certification.map((crtificate) => (
-            <h5 key={_id}>
-              <ol className="list-disc ml-9">
-                <li className="mb-4">
-                  <p className="text-lg">{crtificate.value}</p>
-                </li>
-              </ol>
-            </h5>
-          ))}
-          <div>
-            <h4 className="my-10 text-2xl">Description</h4>
-            <p className="">{bio}</p>
+    <div className="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-[#16a34a]/10 to-[#16a34a]/5 dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between py-16 md:py-24 gap-8">
+            {/* Content */}
+            <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
+              <div className="inline-block px-4 py-1 rounded-full bg-[#16a34a]/10 text-[#16a34a] dark:bg-[#16a34a]/20 dark:text-green-400 font-medium text-sm mb-4">
+                Meet Your {expertise} Coach
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
+                Hi there, <br />
+                <span className="text-[#16a34a] dark:text-green-400">I'm {name}!</span>
+              </h1>
+              
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+                {bio}
+              </p>
+              
+              <div className="flex flex-wrap gap-3 mt-6">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#16a34a]/10 text-[#16a34a] dark:bg-[#16a34a]/20 dark:text-green-400">
+                  <FaDumbbell className="mr-1" /> {expertise}
+                </span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                  {experience} Years Experience
+                </span>
+              </div>
+            </div>
+            
+            {/* Image */}
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+              <div className="relative">
+                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#16a34a] to-[#22C55E] opacity-75 blur"></div>
+                <img 
+                  src={pic} 
+                  alt={name}
+                  className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-xl"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        {/* image */}
-        <div className="">
-          <img src={pic} className="w-full rounded-full h-96 " />
         </div>
       </div>
 
-      {/* about */}
-      <div className="bg-[#F2F2F2] gap-x-3 justify-between items-center flex md:flex-row flex-col p-10">
-        <div className="md:w-1/2 lg:h-[600px] border-4 rounded-lg p-3 md:h-[700px] border-[#0fc050]  md:space-y-5 mt-8">
-          <h1 className="text-4xl italic font-semibold">
-            About Coach <br /> {name}
-          </h1>
-          {/* b1 */}
-          <div className="bg-white rounded-xl p-4">
-            <h3 className="text-green-500 font-bold text-xl">
-              Where {"I'm"} from & where I now call home
-            </h3>
-            <p className="italic text-lg">
-              I was born in Pozzuoli, Italy and now live in Indiana.
-            </p>
+      {/* Certifications Section */}
+      <div className="py-16 bg-white dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Professional <span className="text-[#16a34a] dark:text-green-400">Certifications</span>
+            </h2>
+            <div className="mt-2 h-1 w-20 bg-[#16a34a] mx-auto rounded-full"></div>
           </div>
-          {/* b2 */}
-          <div className="bg-white rounded-xl p-4">
-            <h3 className="text-green-500 font-bold text-xl">
-              How I like to spend my free time
-            </h3>
-            <p className="italic text-lg">
-              I really enjoy being outdoors (mountain climbing), reading,
-              cooking for family and friends. I am a big foodie!
-            </p>
-          </div>
-          {/* b3 */}
-          <div className="bg-white rounded-xl p-4">
-            <h3 className="text-green-500 font-bold text-xl">
-              My go-to workout
-            </h3>
-            <p className="italic text-lg">
-              A kettlebell total body workout! It’ll leave you on the floor for
-              at least 15 minutes afterward in glorious exhaustion.
-            </p>
-          </div>
-        </div>
-        <div className="md:w-1/2 md:h-[700px] lg:h-[600px] border-4 rounded-lg p-3  border-[#0fc050] md:space-y-5 mt-8">
-          <h1 className="text-4xl italic font-semibold">
-            {name}
-            {"'s training Slots"}
-          </h1>
-          <div className="mt-5 grid grid-cols-3 gap-4">
-            {availableDay.map((day, i) => (
-              <Link key={i} to={`/trainer-booked/${_id}`}>
-                <div className="p-4 hover:bg-[#55dcf4] text-xl italic font-medium bg-[#CAF0F8] cursor-pointer rounded-lg mb-3">
-                  <p>{convertTo12HourFormatFunny(availableTime[0])}</p>
-                  <p>{day.value}</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certification.map((certificate, index) => (
+              <div 
+                key={index}
+                className="p-6 rounded-xl bg-gray-50 dark:bg-gray-700 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-600"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-[#16a34a]/10 flex items-center justify-center">
+                      <FaCertificate className="w-6 h-6 text-[#16a34a] dark:text-green-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {certificate.value}
+                    </h3>
+                  </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Be a Trainer */}
-      <div
-        className="hero min-h-[calc(100vh-216px)]"
-        style={{
-          backgroundImage: `url(${image})`,
-        }}
-      >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Be A Trainer</h1>
-            <p className="mb-5">
-              Become a fitness trainer with us and help clients achieve their
-              wellness goals. Enjoy access to top-notch facilities, ongoing
-              professional growth, and a supportive community. Transform lives
-              with personalized training programs.
-            </p>
-            <Link to="/be-a-trainer">
-              <button className="bg-gray-900 text-white px-7 py-4 hover:bg-gray-800">
-                Be A Trainer
-              </button>
-            </Link>
+      {/* About Section */}
+      <div className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-10">
+            {/* About Coach */}
+            <div className="w-full lg:w-1/2">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                <div className="p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    About Coach <span className="text-[#16a34a] dark:text-green-400">{name}</span>
+                  </h2>
+                  
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#16a34a]/10 flex items-center justify-center">
+                          <FaMapMarkerAlt className="w-5 h-5 text-[#16a34a] dark:text-green-400" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#16a34a] dark:text-green-400">
+                          Where I'm from & where I now call home
+                        </h3>
+                        <p className="mt-2 text-gray-600 dark:text-gray-300">
+                          I was born in Pozzuoli, Italy and now live in Indiana.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#16a34a]/10 flex items-center justify-center">
+                          <FaMountain className="w-5 h-5 text-[#16a34a] dark:text-green-400" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#16a34a] dark:text-green-400">
+                          How I like to spend my free time
+                        </h3>
+                        <p className="mt-2 text-gray-600 dark:text-gray-300">
+                          I really enjoy being outdoors (mountain climbing), reading,
+                          cooking for family and friends. I am a big foodie!
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#16a34a]/10 flex items-center justify-center">
+                          <FaDumbbell className="w-5 h-5 text-[#16a34a] dark:text-green-400" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#16a34a] dark:text-green-400">
+                          My go-to workout
+                        </h3>
+                        <p className="mt-2 text-gray-600 dark:text-gray-300">
+                          A kettlebell total body workout! It'll leave you on the floor for
+                          at least 15 minutes afterward in glorious exhaustion.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Training Slots */}
+            <div className="w-full lg:w-1/2">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden h-full">
+                <div className="p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    <span className="text-[#16a34a] dark:text-green-400">{name}'s</span> Training Slots
+                  </h2>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {availableDay.map((day, i) => (
+                      <Link 
+                        key={i} 
+                        to={`/trainer-booked/${_id}`}
+                        className="group"
+                      >
+                        <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600 transition-all duration-300 hover:bg-[#16a34a] hover:border-[#16a34a] dark:hover:bg-[#16a34a]/80 dark:hover:border-[#16a34a]/80 group-hover:transform group-hover:scale-105 group-hover:shadow-lg">
+                          <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 group-hover:text-white mb-2">
+                            <FaCalendarAlt className="w-4 h-4" />
+                            <p className="font-medium">{day.value}</p>
+                          </div>
+                          <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 group-hover:text-white">
+                            <FaClock className="w-4 h-4" />
+                            <p className="font-medium">{convertTo12HourFormatFunny(availableTime[0])}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Be a Trainer CTA */}
+      <div className="relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
+        <div className="absolute inset-0 bg-black opacity-70 z-10"></div>
+        
+        <div className="relative z-20 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Become a <span className="text-[#16a34a]">Fitness Trainer</span>
+          </h2>
+          
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-10">
+            Join our team of expert trainers and help clients achieve their
+            wellness goals. Enjoy access to top-notch facilities, ongoing
+            professional growth, and a supportive community.
+          </p>
+          
+          <Link to="/be-a-trainer">
+            <button className="px-8 py-4 bg-[#16a34a] hover:bg-[#16a34a]/90 text-white font-medium rounded-lg text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              Start Your Journey
+            </button>
+          </Link>
         </div>
       </div>
     </div>
