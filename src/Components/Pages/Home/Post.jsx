@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import useAuthContext from "../../hooks/useAuthContext";
@@ -10,6 +10,8 @@ import { Clock, MapPin, Eye, TrendingUp } from "lucide-react";
 const Post = ({ post }) => {
   const [upvotes, setUpvotes] = useState(post.upvotes);
   const [downvotes, setDownvotes] = useState(post.downvotes);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [voteType, setVoteType] = useState(null);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuthContext();
 
@@ -26,31 +28,82 @@ const Post = ({ post }) => {
     role,
   } = post;
 
+  // Check if user has already voted on this post
+  useEffect(() => {
+    if (user) {
+      const userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+      if (userVotes[_id]) {
+        setHasVoted(true);
+        setVoteType(userVotes[_id]);
+      }
+    }
+  }, [_id, user]);
+
   // handle vote
   const handleVote = async (type) => {
+    if (!user) {
+      toast.error("Please Login First");
+      return;
+    }
+
     const url = `/posts/${post._id}/${type}`;
+    const userId = user.uid || user.email; // Use a unique identifier for the user
 
     try {
-      if (user) {
-        await axiosPublic.post(url);
+      // Send the previous vote type to the server
+      const response = await axiosPublic.post(url, {
+        userId,
+        previousVote: voteType
+      });
+      
+      const { action } = response.data;
+      const userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+      
+      // Handle different actions based on server response
+      if (action === "removed") {
+        // User clicked the same button again, remove their vote
+        if (type === "upvote") {
+          setUpvotes(upvotes - 1);
+        } else {
+          setDownvotes(downvotes - 1);
+        }
+        
+        // Remove vote from localStorage
+        delete userVotes[_id];
+        setHasVoted(false);
+        setVoteType(null);
+        toast.success(`Your ${type} has been removed`);
+      } 
+      else if (action === "upvoted" || action === "downvoted") {
+        // Handle switching from one vote type to another
         if (type === "upvote") {
           setUpvotes(upvotes + 1);
+          // If they previously downvoted, decrease downvote count
+          if (voteType === "downvote") {
+            setDownvotes(downvotes - 1);
+          }
         } else {
           setDownvotes(downvotes + 1);
+          // If they previously upvoted, decrease upvote count
+          if (voteType === "upvote") {
+            setUpvotes(upvotes - 1);
+          }
         }
-      } else {
-        toast.error("Please Login First");
+        
+        // Update localStorage with new vote type
+        userVotes[_id] = type;
+        setHasVoted(true);
+        setVoteType(type);
+        toast.success(`Your ${type} has been recorded`);
       }
+      
+      // Save updated votes to localStorage
+      localStorage.setItem('userVotes', JSON.stringify(userVotes));
     } catch (error) {
       console.error("Error voting:", error);
+      toast.error("Error processing your vote");
     }
   };
-
-  // Format publish time (keeping original functionality)
-  // const formatTime = (time) => {
-  //   const date = new Date(time);
-  //   return date.toLocaleDateString();
-  // };
 
   return (
     <div className="group relative w-full h-full bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col">
@@ -134,10 +187,13 @@ const Post = ({ post }) => {
             {/* Upvote */}
             <button
               onClick={() => handleVote("upvote")}
-              className="flex items-center gap-2 px-4 py-2 hover:bg-[#1AAE51]/10 transition-colors duration-200 group/upvote"
+              className={`flex items-center gap-2 px-4 py-2 transition-colors duration-200 group/upvote ${voteType === "upvote" ? "bg-[#1AAE51]/10" : "hover:bg-[#1AAE51]/10"}`}
             >
-              <BiSolidUpvote className="text-[#1AAE51] group-hover/upvote:scale-110 transition-transform duration-200" size={18} />
-              <span className="font-medium text-gray-700 dark:text-gray-300">{upvotes}</span>
+              <BiSolidUpvote 
+                className={`${voteType === "upvote" ? "text-[#1AAE51] scale-110" : "text-gray-500 dark:text-gray-400"} group-hover/upvote:scale-110 transition-transform duration-200`} 
+                size={18} 
+              />
+              <span className={`font-medium ${voteType === "upvote" ? "text-[#1AAE51]" : "text-gray-700 dark:text-gray-300"}`}>{upvotes}</span>
             </button>
 
             {/* Divider */}
@@ -146,10 +202,13 @@ const Post = ({ post }) => {
             {/* Downvote */}
             <button
               onClick={() => handleVote("downvote")}
-              className="flex items-center gap-2 px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200 group/downvote"
+              className={`flex items-center gap-2 px-4 py-2 transition-colors duration-200 group/downvote ${voteType === "downvote" ? "bg-red-50 dark:bg-red-900/20" : "hover:bg-red-50 dark:hover:bg-red-900/20"}`}
             >
-              <BiSolidDownvote className="text-red-500 group-hover/downvote:scale-110 transition-transform duration-200" size={18} />
-              <span className="font-medium text-gray-700 dark:text-gray-300">{downvotes}</span>
+              <BiSolidDownvote 
+                className={`${voteType === "downvote" ? "text-red-500 scale-110" : "text-gray-500 dark:text-gray-400"} group-hover/downvote:scale-110 transition-transform duration-200`} 
+                size={18} 
+              />
+              <span className={`font-medium ${voteType === "downvote" ? "text-red-500" : "text-gray-700 dark:text-gray-300"}`}>{downvotes}</span>
             </button>
           </div>
 
