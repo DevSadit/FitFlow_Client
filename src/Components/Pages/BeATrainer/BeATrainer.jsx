@@ -80,156 +80,140 @@ const BeATrainer = () => {
   };
 
   return (
-    <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
-      <h1 className="text-5xl font-bold mb-9">Be A Trainer !</h1>
-      <form onSubmit={handleBeaTrainer}>
-        <div className="flex justify-between gap-x-10 items-center">
-          <div className="space-y-6">
-            {/* be a trainer */}
-            <div className="space-y-1 text-sm">
-              <label htmlFor="location" className="block text-gray-600">
-                Full Name
-              </label>
-              <input
-                className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
-                defaultValue={user?.displayName}
-                name="fullName"
-                id="fullName"
-                type="text"
-                placeholder="Full Name"
-                required
-              />
-            </div>
-
-            <div className="space-y-1 text-sm">
-              <label htmlFor="category" className="block text-gray-600">
-                Category
-              </label>
-              <select
-                required
-                className="w-full px-4 py-3 border-[#57cc99] focus:outline-[#57cc99]  rounded-md"
-                name="category"
-              >
-                <option>Strength Training, Bodybuilding</option>
-                <option>Yoga, Holistic Wellness</option>
-                <option>HIIT, Athletic Training</option>
-              </select>
-            </div>
-
-            <div className="space-y-1">
-              <div>
-                <label htmlFor="location" className="block text-gray-600">
-                  Select Availability Day
-                </label>
-                <DaySlots
-                  selectedOption={selectedOption}
-                  setSelectedOption={setSelectedOption}
-                ></DaySlots>
-              </div>
-              <div className="">
-                <label htmlFor="location" className="block text-gray-600 mt-8">
-                  Select Availability Time
-                </label>
-                <TimePicker value={value} setValue={setValue}></TimePicker>
-              </div>
-            </div>
-            {/*  */}
-            <div className="">
-              <label htmlFor="location" className="block text-gray-600">
-                Select Your Category
-              </label>
-              <CategorySlot
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-              ></CategorySlot>
-            </div>
-            {/*  */}
-          </div>
-          <div className="space-y-7">
-            <div className="space-y-1 text-sm">
-              <label htmlFor="title" className="block text-gray-600">
-                Email
-              </label>
-              <input
-                className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
-                defaultValue={user?.email}
-                name="email"
-                id="email"
-                type="text"
-                placeholder="email"
-                required
-              />
-            </div>
-
-            <div className=" p-4 bg-white w-full  m-auto rounded-lg">
-              <span className="">Upload Your Profile Image</span>
-              <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
-                <div className="flex flex-col w-max mx-auto text-center">
-                  <label>
-                    <input
-                      className="text-sm cursor-pointer w-36 hidden"
-                      type="file"
-                      name="image"
-                      id="image"
-                      accept="image/*"
-                      hidden
-                    />
-                    <div className="bg-[#57cc99] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-[#57cc99]">
-                      Upload Image
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between gap-2">
-              {/*  */}
-              <div className="space-y-2 w-full text-sm">
-                <label htmlFor="location" className="block text-gray-600">
-                  Experience
-                </label>
+    <div className="min-h-screen bg-gradient-to-br from-white to-green-50 dark:from-gray-900 dark:to-gray-800 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4">Become a FitFlow Trainer</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300">Join our community of fitness experts and help others achieve their goals</p>
+        </div>
+        
+        <form onSubmit={handleBeaTrainer} className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Full Name</label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-[#57cc99] focus:outline-[#57cc99] rounded-md "
-                  name="experience"
-                  id="experience"
-                  type="number"
-                  placeholder="Provide Year"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white transition-all duration-200"
+                  defaultValue={user?.displayName}
+                  name="fullName"
+                  type="text"
+                  placeholder="Your full name"
                   required
                 />
               </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Category</label>
+                <select
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white transition-all duration-200"
+                  name="category"
+                >
+                  <option>Strength Training, Bodybuilding</option>
+                  <option>Yoga, Holistic Wellness</option>
+                  <option>HIIT, Athletic Training</option>
+                </select>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Availability Days</label>
+                  <DaySlots
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Availability Time</label>
+                  <TimePicker value={value} setValue={setValue} />
+                </div>
+              </div>
+              
+              <div>
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Expertise Category</label>
+                <CategorySlot
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              </div>
             </div>
-
-            <div className="w-full max-w-[300px] space-y-2">
-              <span>Certification</span>
-              <Certificateslot
-                selectedCert={selectedCert}
-                setSelectedCert={setSelectedCert}
-              ></Certificateslot>
+            
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
+                <input
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white transition-all duration-200"
+                  defaultValue={user?.email}
+                  name="email"
+                  type="email"
+                  placeholder="Your email"
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Profile Image</label>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-500">
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <label className="w-full cursor-pointer">
+                      <input
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        className="hidden"
+                        required
+                      />
+                      <div className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
+                        Upload Image
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Experience (Years)</label>
+                <input
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white transition-all duration-200"
+                  name="experience"
+                  type="number"
+                  placeholder="Years of experience"
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Certification</label>
+                <Certificateslot
+                  selectedCert={selectedCert}
+                  setSelectedCert={setSelectedCert}
+                />
+              </div>
             </div>
-
-            {/*  */}
           </div>
-        </div>
-
-        <div className="space-y-1 text-sm w-full">
-          <label htmlFor="description" className="block text-gray-600">
-            Description
-          </label>
-
-          <textarea
-            id="description"
-            className="block rounded-md focus:rose-300 w-full h-32 px-4 py-3 text-gray-800  border  border-[#57cc99] focus:outline-[#57cc99]"
-            name="description"
-          ></textarea>
-        </div>
-
-        <input
-          type="submit"
-          value="Submit"
-          className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-[#57cc99] hover:bg-green-800"
-        />
-      </form>
+          
+          <div className="mt-8 space-y-2">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Description</label>
+            <textarea
+              name="description"
+              className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white transition-all duration-200 h-32"
+              placeholder="Tell us about your fitness journey and expertise..."
+              required
+            ></textarea>
+          </div>
+          
+          <div className="mt-8">
+            <button
+              type="submit"
+              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
+            >
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  );
+);
 };
 
 export default BeATrainer;
